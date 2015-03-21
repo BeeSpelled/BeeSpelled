@@ -39,18 +39,18 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void playButton(View view){
+    public void playButton(View view) {
         Intent intent = new Intent(this, PlayActivity.class);
         startActivity(intent);
     }
 
-    protected void wordsButton(View view){
-        Intent intent = new Intent(this, ListsActivity.class);
+    public void optionsButton(View view) {
+        Intent intent = new Intent(this, OptionsActivity.class);
         startActivity(intent);
     }
 
-    protected void optionsButton(View view){
-        Intent intent = new Intent(this, OptionsActivity.class);
+    public void wordsButton(View view) {
+        Intent intent = new Intent(this, ListsActivity.class);
         startActivity(intent);
     }
 }

@@ -62,6 +62,8 @@
         android:src="@drawable/bee_spelled"
         android:layout_above="@+id/play_btn"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@color/yellow"
+        android:contentDescription="@string/app_name" />
 
 </RelativeLayout>

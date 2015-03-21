@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 
 public class ListsActivity extends ActionBarActivity {
@@ -12,6 +15,10 @@ public class ListsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lists);
+        ListView listView = (ListView) findViewById(R.id.lists);
+        String[] lists = new String[]{"List 1", "List 2", "List 3", "List 4", "List 5"}; //replace with actual user lists
+        ArrayAdapter<String> listsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lists);
+        listView.setAdapter(listsAdapter);
     }
 
 
@@ -35,5 +42,13 @@ public class ListsActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addButton(View view){
+
+    }
+
+    public void backButton(View view){
+
     }
 }
