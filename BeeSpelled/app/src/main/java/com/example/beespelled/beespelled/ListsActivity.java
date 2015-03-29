@@ -1,24 +1,32 @@
 package com.example.beespelled.beespelled;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ListsActivity extends ActionBarActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lists);
-        ListView listView = (ListView) findViewById(R.id.lists);
-        String[] lists = new String[]{"List 1", "List 2", "List 3", "List 4", "List 5"}; //replace with actual user lists
-        ArrayAdapter<String> listsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lists);
-        listView.setAdapter(listsAdapter);
+        try {
+            showLists();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -45,10 +53,54 @@ public class ListsActivity extends ActionBarActivity {
     }
 
     public void addButton(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.create_list_dialog_title);
+        LayoutInflater inflater = this.getLayoutInflater();
+        view = inflater.inflate(R.layout.dialog_lists,null);
+        builder.setView(view);
+        final View finalView = view;
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                EditText name = (EditText) finalView.findViewById(R.id.listName);
+                EditText words = (EditText) finalView.findViewById(R.id.listText);
+                String nameText = name.getText().toString();
+                String[] wordsText = words.getText().toString().split(" ");
+                WordList list = new WordList(nameText, new ArrayList<Word>());
+                list.addWords(wordsText);
+                try {
+                    Data d = new Data(getApplicationContext());
+                    d.writeList(list);
+                    showLists();
+                } catch (java.io.IOException e) {
+                    e.printStackTrace();
+                }
 
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     public void backButton(View view){
 
     }
+
+    public void showLists() throws IOException {
+        Data d = new Data(getApplicationContext());
+        List<WordList> lists = d.readLists();
+        ListView listView = (ListView) findViewById(R.id.lists);
+        List <String> listNames = new ArrayList<>();
+        for(int i=0; i<lists.size();++i){
+            listNames.add(lists.get(i).name);
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listNames);
+        listView.setAdapter(adapter);
+    }
+
 }
