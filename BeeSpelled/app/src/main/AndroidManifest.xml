@@ -40,6 +40,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.beespelled.beespelled.MainActivity" />
         </activity>
+        <activity
+            android:name=".WordsActivity"
+            android:label="@string/title_activity_words"
+            android:parentActivityName=".ListsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.beespelled.beespelled.ListsActivity" />
+        </activity>
     </application>
 
 </manifest>

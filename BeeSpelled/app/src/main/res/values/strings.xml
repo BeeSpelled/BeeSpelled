@@ -25,5 +25,7 @@
     <string name="create_list_dialog_title">Create List</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_words">WordsActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

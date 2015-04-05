@@ -1,8 +1,9 @@
 package com.example.beespelled.beespelled;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class WordList{
+public class WordList implements Serializable{
     public String name;
     public List<Word> words;
 
@@ -32,7 +33,9 @@ public class WordList{
     }
 
     public void addWords(String[] w){
+        System.out.println("Word List");
         for (String aW : w) {
+            System.out.println(aW);
             addWord(aW);
         }
     }
