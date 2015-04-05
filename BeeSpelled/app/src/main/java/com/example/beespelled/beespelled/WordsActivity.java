@@ -94,12 +94,7 @@ public class WordsActivity extends ActionBarActivity {
     public void showWords(WordList list) {
         final List<Word> wordList = list.words;
         ListView listView = (ListView) findViewById(R.id.words);
-        //List <String> words = new ArrayList<>();
-        /*for(int i=0; i<wordList.size();++i){
-            words.add(wordList.get(i).toString());
-        }*/
-        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, words);
-        final WordsAdapter adapter = new WordsAdapter(getApplicationContext(), wordList);
+        final WordsAdapter adapter = new WordsAdapter(this, wordList);
         listView.setAdapter(adapter);
         listView.setClickable(true);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){

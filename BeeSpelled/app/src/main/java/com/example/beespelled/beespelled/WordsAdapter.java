@@ -1,7 +1,9 @@
 package com.example.beespelled.beespelled;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,10 +45,26 @@ public class WordsAdapter extends BaseAdapter{
         }
 
         TextView listName = (TextView)arg1.findViewById(R.id.listViewText);
-
         String name = list.get(arg0).toString();
-
         listName.setText(name);
+
+        View ellipsis = arg1.findViewById(R.id.listViewImage);
+        ellipsis.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle(R.string.options)
+                        .setItems(R.array.ellipsis_array, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // The 'which' argument contains the index position
+                                // of the selected item
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+
+        });
 
         return arg1;
     }
