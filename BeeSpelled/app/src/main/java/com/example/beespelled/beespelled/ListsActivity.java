@@ -10,10 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -98,24 +96,15 @@ public class ListsActivity extends ActionBarActivity{
         Data d = new Data(getApplicationContext());
         final List<WordList> lists = d.readLists();
         ListView listView = (ListView) findViewById(R.id.lists);
-        List <String> listNames = new ArrayList<>();
-        for(int i=0; i<lists.size();++i){
-            listNames.add(lists.get(i).name);
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listNames);
+        final ListAdapter adapter = new ListAdapter(getApplicationContext(), lists);
         listView.setAdapter(adapter);
         listView.setClickable(true);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView parent, View view, int position, long id){
-                String selected = ((TextView)view).getText().toString();
+                String selected = adapter.getItem(position);
                 WordList list = new WordList(null,null);
                 for(int i=0; i<lists.size();++i){
                     if(selected.equals(lists.get(i).name)) list = lists.get(i);
-                }
-                System.out.println(list.name);
-                System.out.println("Lists Activity");
-                for(int i=0; i<list.words.size(); i++){
-                    System.out.println(list.words.get(i).toString());
                 }
                 Intent intent = new Intent(view.getContext(), WordsActivity.class);
                 Bundle bundle = new Bundle();

@@ -23,6 +23,14 @@ public class Data {
         reader = context.openFileInput("lists.txt");
     }
 
+    public List<String> readNames(List<WordList> lists){
+        List <String> listNames = new ArrayList<>();
+        for(int i=0; i<lists.size();++i){
+            listNames.add(lists.get(i).name);
+        }
+        return listNames;
+    }
+
     public List<WordList> readLists() throws FileNotFoundException {
         Scanner s = new Scanner(reader);
         List <WordList> allLists = new ArrayList<>();

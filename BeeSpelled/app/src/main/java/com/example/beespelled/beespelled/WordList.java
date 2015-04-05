@@ -1,6 +1,7 @@
 package com.example.beespelled.beespelled;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WordList implements Serializable{
