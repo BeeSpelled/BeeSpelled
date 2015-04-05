@@ -34,9 +34,7 @@ public class WordList implements Serializable{
     }
 
     public void addWords(String[] w){
-        System.out.println("Word List");
         for (String aW : w) {
-            System.out.println(aW);
             addWord(aW);
         }
     }

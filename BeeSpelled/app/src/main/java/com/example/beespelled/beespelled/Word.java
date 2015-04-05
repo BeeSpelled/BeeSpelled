@@ -10,12 +10,10 @@ public class Word implements Serializable {
     public Boolean[] history;
     
     public Word(String word){
-        System.out.println("Word " + word);
         text=word;
         attempts=0;
         successes=0;
         history=new Boolean[]{};
-        System.out.println("text " + text);
     }
 
     @Override
