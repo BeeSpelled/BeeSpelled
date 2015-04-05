@@ -96,15 +96,15 @@ public class ListsActivity extends ActionBarActivity{
         Data d = new Data(getApplicationContext());
         final List<WordList> lists = d.readLists();
         ListView listView = (ListView) findViewById(R.id.lists);
-        final ListAdapter adapter = new ListAdapter(getApplicationContext(), lists);
+        final ListAdapter adapter = new ListAdapter(this, lists);
         listView.setAdapter(adapter);
         listView.setClickable(true);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            public void onItemClick(AdapterView parent, View view, int position, long id){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView parent, View view, int position, long id) {
                 String selected = adapter.getItem(position);
-                WordList list = new WordList(null,null);
-                for(int i=0; i<lists.size();++i){
-                    if(selected.equals(lists.get(i).name)) list = lists.get(i);
+                WordList list = new WordList(null, null);
+                for (int i = 0; i < lists.size(); ++i) {
+                    if (selected.equals(lists.get(i).name)) list = lists.get(i);
                 }
                 Intent intent = new Intent(view.getContext(), WordsActivity.class);
                 Bundle bundle = new Bundle();
