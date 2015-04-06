@@ -10,16 +10,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 
 public class WordsActivity extends ActionBarActivity {
+
+    WordList list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,8 @@ public class WordsActivity extends ActionBarActivity {
         setContentView(R.layout.activity_words);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        WordList list = (WordList)bundle.getSerializable("list");
+        list = (WordList)bundle.getSerializable("list");
         showWords(list);
-
     }
 
 
@@ -55,7 +54,7 @@ public class WordsActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*public void addButton(View view){
+    public void addButton(View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(list.name);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -69,8 +68,9 @@ public class WordsActivity extends ActionBarActivity {
                 list.addWords(wordsText);
                 try {
                     Data d = new Data(getApplicationContext());
-                    d.writeList(list);
-                    showWords();
+                    d.updateList(list);
+                    //d.writeList(list);
+                    showWords(list);
                 } catch (java.io.IOException e) {
                     e.printStackTrace();
                 }
@@ -85,7 +85,7 @@ public class WordsActivity extends ActionBarActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
-    }*/
+    }
 
     public void backButton(View view){
 

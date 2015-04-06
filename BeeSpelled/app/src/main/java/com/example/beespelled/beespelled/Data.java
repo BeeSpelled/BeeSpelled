@@ -67,8 +67,29 @@ public class Data {
     }
 
     public void writeLists(List<WordList> lists) throws IOException {
+        writer = context.openFileOutput("lists.txt", Context.MODE_PRIVATE);
         for(int i=0; i<lists.size(); i++){
             writeList(lists.get(i));
+        }
+        writer = context.openFileOutput("lists.txt", Context.MODE_APPEND);
+    } 
+
+    public void updateList(WordList list) throws IOException{
+        List<WordList> lists = readLists();
+        for(int i=0; i<lists.size(); i++){
+            if(list.name.equals(lists.get(i).name)){
+                lists.set(i, list);
+            }
+        }
+        writeLists(lists);
+    }
+
+    public void removeList(WordList list) throws IOException{
+        List<WordList> lists = readLists();
+        for(int i=0; i<lists.size(); i++){
+            if(list.name.equals(lists.get(i).name)){
+                lists.remove(i);
+            }
         }
     }
 
