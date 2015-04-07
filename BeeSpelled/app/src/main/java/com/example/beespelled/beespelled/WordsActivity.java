@@ -19,7 +19,7 @@ import java.util.List;
 
 public class WordsActivity extends ActionBarActivity {
 
-    WordList list;
+    WordList list; //Would just be String list
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class WordsActivity extends ActionBarActivity {
         setContentView(R.layout.activity_words);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        list = (WordList)bundle.getSerializable("list");
+        list = (WordList)bundle.getSerializable("list"); //list = get the string name
         showWords(list);
     }
 
@@ -91,8 +91,8 @@ public class WordsActivity extends ActionBarActivity {
 
     }
 
-    public void showWords(WordList list) {
-        final List<Word> wordList = list.words;
+    public void showWords(WordList list) { //would be String list
+        final List<Word> wordList = list.words; //final String wordList = getWords(list);
         ListView listView = (ListView) findViewById(R.id.words);
         final WordsAdapter adapter = new WordsAdapter(this, wordList);
         listView.setAdapter(adapter);

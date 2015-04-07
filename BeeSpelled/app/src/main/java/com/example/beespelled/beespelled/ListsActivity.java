@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -64,11 +63,11 @@ public class ListsActivity extends ActionBarActivity{
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 EditText name = (EditText) finalView.findViewById(R.id.listName);
-                EditText words = (EditText) finalView.findViewById(R.id.listText);
+                EditText words = (EditText) finalView.findViewById(R.id.listText); //will remove
                 String nameText = name.getText().toString();
-                String[] wordsText = words.getText().toString().split(" ");
+                String[] wordsText = words.getText().toString().split(" "); //will remove
                 WordList list = new WordList(nameText, new ArrayList<Word>());
-                list.addWords(wordsText);
+                list.addWords(wordsText); //will remove
                 try {
                     Data d = new Data(getApplicationContext());
                     d.writeList(list);
@@ -76,6 +75,7 @@ public class ListsActivity extends ActionBarActivity{
                 } catch (java.io.IOException e) {
                     e.printStackTrace();
                 }
+                //start words activity with new list
 
             }
         });
@@ -94,8 +94,8 @@ public class ListsActivity extends ActionBarActivity{
     }
 
     public void showLists() throws IOException {
-        Data d = new Data(getApplicationContext());
-        final List<WordList> lists = d.readLists();
+        Data d = new Data(getApplicationContext()); //wont's need
+        final List<WordList> lists = d.readLists(); //type will be List<String>
         ListView listView = (ListView) findViewById(R.id.lists);
         final ListAdapter adapter = new ListAdapter(this, lists);
         listView.setAdapter(adapter);
@@ -103,13 +103,13 @@ public class ListsActivity extends ActionBarActivity{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 String selected = adapter.getItem(position);
-                WordList list = new WordList(null, null);
+                WordList list = new WordList(null, null); //will be String list = ""
                 for (int i = 0; i < lists.size(); ++i) {
-                    if (selected.equals(lists.get(i).name)) list = lists.get(i);
+                    if (selected.equals(lists.get(i).name)) list = lists.get(i); //will remove the .name
                 }
-                Intent intent = new Intent(view.getContext(), WordsActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("list", list);
+                Intent intent = new Intent(view.getContext(), WordsActivity.class); //maybe make these lines a new method
+                Bundle bundle = new Bundle(); //maybe don't need a bundle since it's just the string list name
+                bundle.putSerializable("list", list); //in that case wouldn't need the serializable
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

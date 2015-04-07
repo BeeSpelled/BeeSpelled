@@ -72,7 +72,7 @@ public class Data {
             writeList(lists.get(i));
         }
         writer = context.openFileOutput("lists.txt", Context.MODE_APPEND);
-    } 
+    }
 
     public void updateList(WordList list) throws IOException{
         List<WordList> lists = readLists();

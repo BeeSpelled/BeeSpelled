@@ -3,7 +3,6 @@ package com.example.beespelled.beespelled;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +18,10 @@ public class ListAdapter extends BaseAdapter{
     List<String> list;
     private Context context;
 
-    public ListAdapter(Context c, List <WordList>lists) throws IOException {
+    public ListAdapter(Context c, List <WordList>lists) throws IOException { //switch lists type to List<String>
         context=c;
-        d = new Data(context);
-        list = d.readNames(lists);
+        d = new Data(context); //won't need
+        list = d.readNames(lists); //change to list = lists
     }
 
     @Override
@@ -58,13 +57,11 @@ public class ListAdapter extends BaseAdapter{
             @Override
             public void onClick(View v){
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                final CharSequence[] cs = context.getResources().getTextArray(R.array.ellipsis_array);
                 builder.setTitle(R.string.options)
                         .setItems(R.array.ellipsis_array, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // The 'which' argument contains the index position
                                 // of the selected item
-                                Log.d("NULL", cs[0].toString() );
                             }
                         });
                 AlertDialog dialog = builder.create();
