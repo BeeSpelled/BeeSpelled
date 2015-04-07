@@ -13,9 +13,15 @@ import java.util.List;
 
 public class WordsAdapter extends BaseAdapter{
     private Context context;
+<<<<<<< HEAD
     List<String> list;
 
     public WordsAdapter(Context c, List<String> wordList) {
+=======
+    List<Word> list; //Would be List<String> list
+
+    public WordsAdapter(Context c, List<Word> wordList) { //List<String> wordList
+>>>>>>> 250bdce3f6dedc4879c07ee63374849cff590c98
         list = wordList;
         context=c;
     }
@@ -28,7 +34,7 @@ public class WordsAdapter extends BaseAdapter{
     @Override
     public String getItem(int arg0) {
         return list.get(arg0).toString();
-    }
+    } //maybe don't need the toString() because no longer a word object
 
     @Override
     public long getItemId(int arg0) {
@@ -45,7 +51,7 @@ public class WordsAdapter extends BaseAdapter{
         }
 
         TextView listName = (TextView)arg1.findViewById(R.id.listViewText);
-        String name = list.get(arg0).toString();
+        String name = list.get(arg0).toString(); //maybe don't need the toString() because no longer a word object
         listName.setText(name);
 
         View ellipsis = arg1.findViewById(R.id.listViewImage);

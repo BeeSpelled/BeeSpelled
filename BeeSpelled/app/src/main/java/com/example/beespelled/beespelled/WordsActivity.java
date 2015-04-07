@@ -20,7 +20,11 @@ import java.util.List;
 
 public class WordsActivity extends ListViewActivity {
 
+<<<<<<< HEAD
     String list;
+=======
+    WordList list; //Would just be String list
+>>>>>>> 250bdce3f6dedc4879c07ee63374849cff590c98
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +32,17 @@ public class WordsActivity extends ListViewActivity {
         setContentView(R.layout.activity_words);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
+<<<<<<< HEAD
         list = bundle.getString("list");
         try {
             showItems();
         } catch (IOException e) {
             e.printStackTrace();
         }
+=======
+        list = (WordList)bundle.getSerializable("list"); //list = get the string name
+        showWords(list);
+>>>>>>> 250bdce3f6dedc4879c07ee63374849cff590c98
     }
 
 
@@ -99,8 +108,17 @@ public class WordsActivity extends ListViewActivity {
         dialog.show();
     }
 
+<<<<<<< HEAD
     @Override
     public void showItems() throws IOException {
+=======
+    public void backButton(View view){
+
+    }
+
+    public void showWords(WordList list) { //would be String list
+        final List<Word> wordList = list.words; //final String wordList = getWords(list);
+>>>>>>> 250bdce3f6dedc4879c07ee63374849cff590c98
         ListView listView = (ListView) findViewById(R.id.words);
         final WordsAdapter adapter = new WordsAdapter(this, Data_Static.getWordsByList(getApplicationContext(), list));
         listView.setAdapter(adapter);

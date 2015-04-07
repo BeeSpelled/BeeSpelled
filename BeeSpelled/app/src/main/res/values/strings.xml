@@ -30,7 +30,7 @@
     <string name="hello_world">Hello world!</string>
     
     <string-array name="ellipsis_array">
-        <item>Edit...</item>
+        <item>Edit</item>
         <item>Delete</item>
     </string-array>
 
