@@ -14,12 +14,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.List;
 
 
-public class WordsActivity extends ActionBarActivity {
+public class WordsActivity extends ListViewActivity {
 
-    WordList list;
+    String list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,12 @@ public class WordsActivity extends ActionBarActivity {
         setContentView(R.layout.activity_words);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        list = (WordList)bundle.getSerializable("list");
-        showWords(list);
+        list = bundle.getString("list");
+        try {
+            showItems();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -59,9 +64,14 @@ public class WordsActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addButton(View view){
+    public void backButton(View view){
+
+    }
+
+    @Override
+    public void addItem(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(list.name);
+        builder.setTitle(list);
         LayoutInflater inflater = this.getLayoutInflater();
         view = inflater.inflate(R.layout.dialog_words,null);
         builder.setView(view);
@@ -70,13 +80,10 @@ public class WordsActivity extends ActionBarActivity {
             public void onClick(DialogInterface dialog, int id) {
                 EditText words = (EditText) finalView.findViewById(R.id.wordText);
                 String[] wordsText = words.getText().toString().split(" ");
-                list.addWords(wordsText);
                 try {
-                    Data d = new Data(getApplicationContext());
-                    d.updateList(list);
-                    //d.writeList(list);
-                    showWords(list);
-                } catch (java.io.IOException e) {
+                    Data_Static.addWordsToList(getApplicationContext(), list, wordsText);
+                    showItems();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
 
@@ -92,21 +99,16 @@ public class WordsActivity extends ActionBarActivity {
         dialog.show();
     }
 
-    public void backButton(View view){
-
-    }
-
-    public void showWords(WordList list) {
-        final List<Word> wordList = list.words;
+    @Override
+    public void showItems() throws IOException {
         ListView listView = (ListView) findViewById(R.id.words);
-        final WordsAdapter adapter = new WordsAdapter(this, wordList);
+        final WordsAdapter adapter = new WordsAdapter(this, Data_Static.getWordsByList(getApplicationContext(), list));
         listView.setAdapter(adapter);
         listView.setClickable(true);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            public void onItemClick(AdapterView parent, View view, int position, long id){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView parent, View view, int position, long id) {
 
             }
         });
     }
-
 }

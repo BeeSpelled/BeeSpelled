@@ -19,13 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListsActivity extends ActionBarActivity{
+public class ListsActivity extends ListViewActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lists);
         try {
-            showLists();
+            showItems();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,7 +54,8 @@ public class ListsActivity extends ActionBarActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    public void addButton(View view){
+    @Override
+    public void addItem(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.create_list_dialog_title);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -67,12 +68,11 @@ public class ListsActivity extends ActionBarActivity{
                 EditText words = (EditText) finalView.findViewById(R.id.listText);
                 String nameText = name.getText().toString();
                 String[] wordsText = words.getText().toString().split(" ");
-                WordList list = new WordList(nameText, new ArrayList<Word>());
-                list.addWords(wordsText);
                 try {
-                    Data d = new Data(getApplicationContext());
-                    d.writeList(list);
-                    showLists();
+                    if (!Data_Static.createList(getApplicationContext(), nameText)){
+                        //Error
+                    };
+                    showItems();
                 } catch (java.io.IOException e) {
                     e.printStackTrace();
                 }
@@ -89,31 +89,27 @@ public class ListsActivity extends ActionBarActivity{
         dialog.show();
     }
 
-    public void backButton(View view){
+    @Override
+    public void backButton(View view) {
 
     }
 
-    public void showLists() throws IOException {
-        Data d = new Data(getApplicationContext());
-        final List<WordList> lists = d.readLists();
+    @Override
+    public void showItems() throws IOException {
+        final List<String> lists = Data_Static.getListNames(getApplicationContext());
         ListView listView = (ListView) findViewById(R.id.lists);
-        final ListAdapter adapter = new ListAdapter(this, lists);
+        final ListAdapter adapter = new ListAdapter(this);
         listView.setAdapter(adapter);
         listView.setClickable(true);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 String selected = adapter.getItem(position);
-                WordList list = new WordList(null, null);
-                for (int i = 0; i < lists.size(); ++i) {
-                    if (selected.equals(lists.get(i).name)) list = lists.get(i);
-                }
                 Intent intent = new Intent(view.getContext(), WordsActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("list", list);
+                bundle.putString("list", selected);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
     }
-
 }

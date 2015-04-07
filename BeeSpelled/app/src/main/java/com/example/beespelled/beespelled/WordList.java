@@ -6,12 +6,19 @@ import java.util.List;
 
 public class WordList implements Serializable{
     public String name;
-    public List<Word> words;
+    public List<String> words;
 
-    public WordList(String n, List<Word> w){
+    public WordList(String n, List<String> w){
         name=n;
         words=w;
     }
+
+    public WordList(String n){
+        name = n;
+        words = new ArrayList<String>();
+        name = name;
+    }
+
 
     public String getName(){
         return name;
@@ -21,19 +28,19 @@ public class WordList implements Serializable{
         name = n;
     }
 
-    public void setWords(List<Word> w) {
+    public void setWords(List<String> w) {
         words = w;
     }
 
-    public List<Word> getWords(){
+    public List<String> getWords(){
         return words;
     }
 
     public void addWord(String word){
-        words.add(new Word(word));
+        words.add(word);
     }
 
-    public void addWords(String[] w){
+    public void addWords(List<String> w){
         for (String aW : w) {
             addWord(aW);
         }

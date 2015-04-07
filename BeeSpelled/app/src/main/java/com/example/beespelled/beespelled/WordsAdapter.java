@@ -13,9 +13,9 @@ import java.util.List;
 
 public class WordsAdapter extends BaseAdapter{
     private Context context;
-    List<Word> list;
+    List<String> list;
 
-    public WordsAdapter(Context c, List<Word> wordList) {
+    public WordsAdapter(Context c, List<String> wordList) {
         list = wordList;
         context=c;
     }

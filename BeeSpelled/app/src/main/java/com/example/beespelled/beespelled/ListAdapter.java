@@ -10,19 +10,18 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.app.Activity;
 
 import java.io.IOException;
 import java.util.List;
 
 public class ListAdapter extends BaseAdapter{
-    Data d;
     List<String> list;
-    private Context context;
+    private ListsActivity a;
 
-    public ListAdapter(Context c, List <WordList>lists) throws IOException {
-        context=c;
-        d = new Data(context);
-        list = d.readNames(lists);
+    public ListAdapter(ListsActivity c) throws IOException {
+        a = c;
+        list = Data_Static.getListNames(a.getApplicationContext());
     }
 
     @Override
@@ -45,25 +44,37 @@ public class ListAdapter extends BaseAdapter{
 
         if(arg1==null)
         {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             arg1 = inflater.inflate(R.layout.listview_item, arg2,false);
         }
 
         TextView listName = (TextView)arg1.findViewById(R.id.listViewText);
-        String name = list.get(arg0);
+        final String name = list.get(arg0);
         listName.setText(name);
 
         View ellipsis = arg1.findViewById(R.id.listViewImage);
         ellipsis.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                final CharSequence[] cs = context.getResources().getTextArray(R.array.ellipsis_array);
+                AlertDialog.Builder builder = new AlertDialog.Builder(a);
+                final CharSequence[] cs = a.getResources().getTextArray(R.array.ellipsis_array);
                 builder.setTitle(R.string.options)
                         .setItems(R.array.ellipsis_array, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // The 'which' argument contains the index position
-                                // of the selected item
+                                switch(which){
+                                    case 1:
+                                        try {
+                                            Data_Static.deleteList(a.getApplicationContext(), name);
+                                            a.showItems();
+                                        }
+                                        catch (IOException e){
+                                            e.printStackTrace();
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                }
+
                                 Log.d("NULL", cs[0].toString() );
                             }
                         });

@@ -17,7 +17,7 @@
         android:src="@drawable/add"
         android:background="@color/background"
         android:contentDescription="@string/add"
-        android:onClick="addButton"
+        android:onClick="addItem"
         />
 
     <ImageButton
