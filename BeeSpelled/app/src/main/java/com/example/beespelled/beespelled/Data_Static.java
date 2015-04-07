@@ -128,6 +128,7 @@ public class Data_Static {
         File dir = getPath(c, WORDS_PATH, word.toString());
         ObjectOutputStream oo = new ObjectOutputStream(new FileOutputStream(dir));
         oo.writeObject(word);
+        oo.close();
     }
 
     private static Word readWord(Context c, String name) throws IOException{
@@ -150,6 +151,7 @@ public class Data_Static {
         File dir = getPath(c, LISTS_PATH, list.getName());
         ObjectOutputStream oo = new ObjectOutputStream(new FileOutputStream(dir));
         oo.writeObject(list);
+        oo.close();
     }
 
     private static WordList readWordList(Context c, String name) throws IOException{
