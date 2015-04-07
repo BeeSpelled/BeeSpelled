@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-
+import android.util.Log;
 
 import java.util.List;
 
@@ -37,6 +37,11 @@ public class WordsActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_words, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed(){
+        Log.d("NULL", "NAVIGATE UP");
     }
 
     @Override

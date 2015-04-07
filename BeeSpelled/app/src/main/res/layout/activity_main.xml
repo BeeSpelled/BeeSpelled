@@ -60,10 +60,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/logo"
         android:src="@drawable/bee_spelled"
-        android:layout_above="@+id/play_btn"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:background="@color/yellow"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/app_name"
+        android:layout_above="@+id/play_btn"
+        android:layout_alignLeft="@+id/play_btn"
+        android:layout_alignStart="@+id/play_btn" />
 
 </RelativeLayout>
