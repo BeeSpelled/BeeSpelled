@@ -6,6 +6,9 @@
     <string name="back">Back</string>
     <string name="action_settings">Settings</string>
     <string name="play">Play!</string>
+    <string name="test">Test</string>
+    <string name="quiz">Quiz</string>
+    <string name="history">History</string>
     <string name="lists">Words</string>
     <string name="options">Options</string>
     <string name="word_lists">Word Lists</string>

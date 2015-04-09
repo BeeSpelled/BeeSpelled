@@ -27,6 +27,7 @@ public class WordsActivity extends ListViewActivity {
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         list = bundle.getString("list");
+        getSupportActionBar().setTitle(list);
         try {
             showItems();
         } catch (IOException e) {

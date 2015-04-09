@@ -20,6 +20,8 @@ public class ListsActivity extends ListViewActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lists);
+        getSupportActionBar().setTitle("Your Lists");
+
         try {
             showItems();
         } catch (IOException e) {
