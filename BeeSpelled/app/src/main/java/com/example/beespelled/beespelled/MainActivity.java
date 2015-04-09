@@ -8,8 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.io.IOException;
-import java.util.List;
-import android.util.Log;
+
 
 
 public class MainActivity extends ActionBarActivity {

@@ -10,7 +10,7 @@
     <string name="options">Options</string>
     <string name="word_lists">Word Lists</string>
     <string name="listName">Name of List</string>
-    <string name="listText">Words...</string>
+    <string name="listText">Enter Words...</string>
 
     <color name="yellow">#ffe6b800</color>
     <color name="blue">#ff1aa2e6</color>
@@ -24,6 +24,7 @@
     <string name="title_activity_lists">ListsActivity</string>
     <string name="title_activity_options">OptionsActivity</string>
     <string name="create_list_dialog_title">Create List</string>
+    <string name="edit_list_dialog_title">Edit List</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="title_activity_words">WordsActivity</string>

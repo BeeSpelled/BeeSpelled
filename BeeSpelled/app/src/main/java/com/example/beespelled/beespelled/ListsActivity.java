@@ -3,9 +3,7 @@ package com.example.beespelled.beespelled;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,8 +13,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ListsActivity extends ListViewActivity{
@@ -65,13 +61,12 @@ public class ListsActivity extends ListViewActivity{
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 EditText name = (EditText) finalView.findViewById(R.id.listName);
-                EditText words = (EditText) finalView.findViewById(R.id.listText);
                 String nameText = name.getText().toString();
-                String[] wordsText = words.getText().toString().split(" ");
                 try {
                     if (!Data_Static.createList(getApplicationContext(), nameText)){
                         //Error
-                    };
+                        System.out.println("Couldn't create list");
+                    }
                     showItems();
                 } catch (java.io.IOException e) {
                     e.printStackTrace();
@@ -96,7 +91,7 @@ public class ListsActivity extends ListViewActivity{
 
     @Override
     public void showItems() throws IOException {
-        final List<String> lists = Data_Static.getListNames(getApplicationContext());
+        //final List<String> lists = Data_Static.getListNames(getApplicationContext());
         ListView listView = (ListView) findViewById(R.id.lists);
         final ListAdapter adapter = new ListAdapter(this);
         listView.setAdapter(adapter);

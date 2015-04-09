@@ -8,9 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.app.Activity;
 
 import java.io.IOException;
 import java.util.List;
@@ -62,6 +61,9 @@ public class ListAdapter extends BaseAdapter{
                         .setItems(R.array.ellipsis_array, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch(which){
+                                    case 0:
+                                        editList(name);
+                                        break;
                                     case 1:
                                         try {
                                             Data_Static.deleteList(a.getApplicationContext(), name);
@@ -84,6 +86,36 @@ public class ListAdapter extends BaseAdapter{
 
         });
         return arg1;
+    }
+
+    public void editList(final String listName){
+        AlertDialog.Builder builder = new AlertDialog.Builder(a);
+        builder.setTitle(R.string.edit_list_dialog_title);
+        LayoutInflater inflater = a.getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_lists,null);
+        builder.setView(view);
+        final EditText name = (EditText) view.findViewById(R.id.listName);
+        name.setText(listName);
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                String nameText = name.getText().toString();
+                try {
+                    Data_Static.changeListName(a.getApplicationContext(), listName, nameText);
+                    a.showItems();
+                } catch (java.io.IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }
