@@ -48,6 +48,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.beespelled.beespelled.ListsActivity" />
         </activity>
+        <activity
+            android:name=".QuizActivity"
+            android:label="@string/title_activity_quiz"
+            android:parentActivityName=".PlayActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.beespelled.beespelled.PlayActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -64,6 +64,7 @@ public class WordsAdapter extends BaseAdapter{
                                     case 1:
                                         try {
                                             Data_Static.deleteWordFromList(a.getApplicationContext(), a.list, name);
+                                            a.showItems();
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }

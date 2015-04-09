@@ -33,6 +33,21 @@
     <string name="cancel">Cancel</string>
     <string name="title_activity_words">WordsActivity</string>
     <string name="hello_world">Hello world!</string>
+
+    <string name="playHeader">Play!</string>
+    <string name="playScreenQuizButton">QUIZ</string>
+    <string name="playScreenStudyButton">STUDY</string>
+    <string name="playScreenOptionsButton">OPTIONS</string>
+    <string name="select_list_dialog_title">Select List</string>
+
+    <string name="title_activity_quiz">QuizActivity</string>
+    <string name="quizHeader">Quiz!</string>
+    <string name="keyboardButton">KEYBOARD</string>
+    <string name="speechButton">SPEECH</string>
+    <string name="infoButton">INFO</string>
+    <string name="quitButton">QUIT</string>
+    <string name="hearButton">HEAR WORD</string>
+    <string name="keyboardInput">Type Word Here...</string>
     
     <string-array name="ellipsis_array">
         <item>Edit...</item>
