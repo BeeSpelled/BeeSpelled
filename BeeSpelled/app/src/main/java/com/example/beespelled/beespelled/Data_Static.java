@@ -34,7 +34,6 @@ public class Data_Static {
         String[] files = path.list();
 //        Log.d(CLASS, path.getAbsolutePath());
         for (String i : files) Log.d(CLASS, i);
-
     }
 
     public static void deleteAllData(Context c) throws IOException{
@@ -127,9 +126,16 @@ public class Data_Static {
         getPath(c, LISTS_PATH, list).delete();
     }
 
-//    public static void deleteWordFromList(Context c, String list, String word){
-//        WordList
-//    }
+    public static void deleteWordFromList(Context c, String list, String word) throws IOException{
+        WordList wList = readWordList(c, list); //read in list
+        wList.getWords().remove(word); //remove the word
+        writeWordList(c, wList); //write the list back to file
+        Word w = readWord(c, word); //read in word
+        if (w.decRefs() <= 0){ //If this is last reference to that word...
+            getPath(c, WORDS_PATH, word).delete(); //Delete the word file
+        }
+        else writeWord(c, w); //else, write it back to file
+    }
 
     public static void changeListName(Context c, String originalName, String newName) throws IOException{
         File path = getPath(c, LISTS_PATH, originalName);

@@ -46,7 +46,7 @@ public class WordsAdapter extends BaseAdapter{
         }
 
         TextView listName = (TextView)arg1.findViewById(R.id.listViewText);
-        String name = list.get(arg0);
+        final String name = list.get(arg0);
         listName.setText(name);
 
         View ellipsis = arg1.findViewById(R.id.listViewImage);
@@ -54,14 +54,14 @@ public class WordsAdapter extends BaseAdapter{
             @Override
             public void onClick(View v){
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle(R.string.options)
+                builder.setTitle(name)
                         .setItems(R.array.ellipsis_array, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch(which){
                                     case 0:
                                         break; //add edit word
                                     case 1:
-                                        //add delete word
+//                                        Data_Static.deleteWordFromList(context,);
                                         break;
                                     default:
                                         break;
