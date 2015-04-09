@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -67,9 +68,12 @@ public class ListsActivity extends ListViewActivity{
                 try {
                     if (!Data_Static.createList(getApplicationContext(), nameText)){
                         //Error
-                        System.out.println("Couldn't create list");
+                        Log.e("ListsActivity", "Couldn't create list");
+//                        Log.ERROR()
                     }
+
                     showItems();
+                    startWordsActivity(nameText);
                 } catch (java.io.IOException e) {
                     e.printStackTrace();
                 }
@@ -101,12 +105,16 @@ public class ListsActivity extends ListViewActivity{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 String selected = adapter.getItem(position);
-                Intent intent = new Intent(view.getContext(), WordsActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("list", selected);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                startWordsActivity(selected);
             }
         });
+    }
+
+    public void startWordsActivity(String listName){
+        Intent intent = new Intent(getApplicationContext(), WordsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("list", listName);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }

@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import java.io.IOException;
 
 
 public class OptionsActivity extends ActionBarActivity {
@@ -20,6 +23,16 @@ public class OptionsActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_options, menu);
         return true;
+    }
+
+    public void deleteData(View view){
+        try {
+            Data_Static.deleteAllData(getApplicationContext());
+            Data_Static.initializeData(getApplicationContext());
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @Override

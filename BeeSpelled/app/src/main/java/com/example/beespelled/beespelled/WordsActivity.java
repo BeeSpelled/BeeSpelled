@@ -81,6 +81,7 @@ public class WordsActivity extends ListViewActivity {
                 String[] wordsText = words.getText().toString().split(" ");
                 try {
                     Data_Static.addWordsToList(getApplicationContext(), list, wordsText);
+                    Data_Static.createWords(getApplicationContext(), wordsText);
                     showItems();
                 } catch (IOException e) {
                     e.printStackTrace();

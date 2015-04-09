@@ -21,7 +21,7 @@ public class Data_Static {
 
     public static void initializeData(Context c) throws IOException{
         File fileSystemChecker = getPath(c, LISTS_PATH);
-        Log.d(CLASS, fileSystemChecker.getAbsolutePath());
+//        Log.d(CLASS, fileSystemChecker.getAbsolutePath());
         if (!fileSystemChecker.exists()) fileSystemChecker.mkdir();
 
         fileSystemChecker = getPath(c, WORDS_PATH);
@@ -32,17 +32,42 @@ public class Data_Static {
 
         File path = getPath(c, "");
         String[] files = path.list();
-        Log.d(CLASS, path.getAbsolutePath());
+//        Log.d(CLASS, path.getAbsolutePath());
         for (String i : files) Log.d(CLASS, i);
 
     }
+
+    public static void deleteAllData(Context c) throws IOException{
+        File[] files = getPath(c, LISTS_PATH).listFiles();
+        for (File f : files) {
+            Log.d(CLASS + "deleteAllData", "Deleting" + LISTS_PATH + "/" + f.getName());
+            f.delete();
+        }
+
+        files = getPath(c, WORDS_PATH).listFiles();
+        for (File f: files) {
+            Log.d(CLASS + "deleteAllData", "Deleting" + WORDS_PATH + "/" + f.getName());
+            f.delete();
+        }
+
+        files = getPath(c, PRONUNCIATIONS_PATH).listFiles();
+        for (File f : files) {
+            Log.d(CLASS + "deleteAllData", "Deleting" + PRONUNCIATIONS_PATH + "/" + f.getName());
+            f.delete();
+        }
+
+        Log.d(CLASS + " deleteAllData", "Lists " + String.valueOf(getPath(c, LISTS_PATH).delete()));
+        Log.d(CLASS + " deleteAllData", "Words " + String.valueOf(getPath(c, WORDS_PATH).delete()));
+        Log.d(CLASS + " deleteAllData", "Pronunciations " + String.valueOf(getPath(c, PRONUNCIATIONS_PATH).delete()));
+    }
+
 
     public static List<String> getListNames(Context c) {
         try {
             String[] things = getPath(c, LISTS_PATH).list();
             List<String> path = Arrays.asList(things);
-            Log.d(CLASS, "READING THE FOLLOWING LIST NAMES: ");
-            for (String item : things) Log.d(CLASS, "\t" + item);
+            Log.d(CLASS + " getListNames", "READING THE FOLLOWING LIST NAMES: ");
+            for (String item : things) Log.d(CLASS + " getListNames", "\t" + item);
             return Arrays.asList(things);
         }
         catch (IOException e){
@@ -66,12 +91,17 @@ public class Data_Static {
         else return false;
     }
 
-    public static boolean createWord(Context c, String word) throws IOException{
-        if (!wordExists(c, word)){
-            writeWord(c, new Word(word));
-            return true;
+    public static void createWord(Context c, String word) throws IOException{
+        if (!wordExists(c, word)){writeWord(c, new Word(word));}
+        else {
+            Word w = readWord(c, word);
+            w.incRefs();
+            writeWord(c, w);
         }
-        else return false;
+    }
+
+    public static void createWords(Context c, String[] words) throws IOException{
+        for (String word : words) createWord(c, word);
     }
 
     public static void addWordToList(Context c, String list, String word) throws IOException{
@@ -96,6 +126,10 @@ public class Data_Static {
     public static void deleteList(Context c, String list) throws IOException{
         getPath(c, LISTS_PATH, list).delete();
     }
+
+//    public static void deleteWordFromList(Context c, String list, String word){
+//        WordList
+//    }
 
     public static void changeListName(Context c, String originalName, String newName) throws IOException{
         File path = getPath(c, LISTS_PATH, originalName);

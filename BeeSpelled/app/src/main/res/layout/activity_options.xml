@@ -7,5 +7,13 @@
     tools:context="com.example.beespelled.beespelled.OptionsActivity">
 
 
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_data"
+        android:id="@+id/delete_data_btn"
+        android:layout_marginBottom="247dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="deleteData" />
 </RelativeLayout>

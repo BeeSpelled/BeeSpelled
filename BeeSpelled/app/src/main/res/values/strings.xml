@@ -11,6 +11,7 @@
     <string name="history">History</string>
     <string name="lists">Words</string>
     <string name="options">Options</string>
+    <string name="delete_data">Delete All Data</string>
     <string name="word_lists">Word Lists</string>
     <string name="listName">Name of List</string>
     <string name="listText">Enter Words...</string>
