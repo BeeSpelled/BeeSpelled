@@ -1,0 +1,8 @@
+TODO
+
+Record Voice Pronunciations
+Word Dialog for editing words/recording pronunciations
+Text to speech in Play Activity
+Speech recognition (Need Phone)
+Fix Colors/Logo background
+
