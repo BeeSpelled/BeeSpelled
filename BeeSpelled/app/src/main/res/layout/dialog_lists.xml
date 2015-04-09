@@ -15,16 +15,5 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:hint="@string/listName" />
-    <EditText
-        android:id="@+id/listText"
-        android:inputType="textMultiLine"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="24dp"
-        android:hint="@string/listText"
-        android:layout_weight="0.25" />
 
 </LinearLayout>

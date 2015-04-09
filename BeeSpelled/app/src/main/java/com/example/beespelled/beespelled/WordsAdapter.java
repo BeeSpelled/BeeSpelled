@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import java.util.List;
 
 public class WordsAdapter extends BaseAdapter{
@@ -27,7 +28,7 @@ public class WordsAdapter extends BaseAdapter{
 
     @Override
     public String getItem(int arg0) {
-        return list.get(arg0).toString();
+        return list.get(arg0);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class WordsAdapter extends BaseAdapter{
         }
 
         TextView listName = (TextView)arg1.findViewById(R.id.listViewText);
-        String name = list.get(arg0).toString();
+        String name = list.get(arg0);
         listName.setText(name);
 
         View ellipsis = arg1.findViewById(R.id.listViewImage);
@@ -56,8 +57,15 @@ public class WordsAdapter extends BaseAdapter{
                 builder.setTitle(R.string.options)
                         .setItems(R.array.ellipsis_array, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // The 'which' argument contains the index position
-                                // of the selected item
+                                switch(which){
+                                    case 0:
+                                        break; //add edit word
+                                    case 1:
+                                        //add delete word
+                                        break;
+                                    default:
+                                        break;
+                                }
                             }
                         });
                 AlertDialog dialog = builder.create();
@@ -68,4 +76,6 @@ public class WordsAdapter extends BaseAdapter{
 
         return arg1;
     }
+
+
 }

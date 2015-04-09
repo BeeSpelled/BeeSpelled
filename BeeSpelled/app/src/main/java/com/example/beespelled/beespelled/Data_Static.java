@@ -11,9 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.List;
 import android.util.Log;
-/**
- * Created by Tmlewallen on 4/7/15.
- */
+
 public class Data_Static {
 
     private static final String LISTS_PATH = "lists";

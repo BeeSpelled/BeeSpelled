@@ -15,8 +15,7 @@ public class WordList implements Serializable{
 
     public WordList(String n){
         name = n;
-        words = new ArrayList<String>();
-        name = name;
+        words = new ArrayList<>();
     }
 
 
