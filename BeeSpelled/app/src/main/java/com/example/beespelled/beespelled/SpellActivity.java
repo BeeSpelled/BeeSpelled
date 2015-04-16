@@ -7,14 +7,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.util.List;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnInitListener;
 
-public abstract class SpellActivity extends ActionBarActivity {
+public abstract class SpellActivity extends ActionBarActivity implements OnInitListener {
     private String attempt;
     public String getAttempt() { return attempt;}
     public void setAttempt(String attempt) { this.attempt = attempt; }
+    public TextToSpeech sayWord;
 
     private String listName;
     public String getListName() { return listName; }
@@ -37,7 +39,8 @@ public abstract class SpellActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        config();
+        sayWord = new TextToSpeech(this, this);
+        config(); // subclass specific configuration
         try {
             words = Data_Static.getWordsByList(getApplicationContext(), getListName());
         } catch (IOException e) {
@@ -70,36 +73,39 @@ public abstract class SpellActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean checkAttempt() { return getAttempt().equals(getCurrWord()); }
+    @Override
+    public void onInit(int i) { } // for text to speech
 
-    public void spellKeyboard(View view) {
+    public boolean checkAttempt() { return getAttempt().equals(getCurrWord()); } // is the attempt correct?
+
+    public void spellKeyboard(View view) { // spell word with keyboard
         EditText attemptEdit = null;
         attemptEdit = (EditText)this.findViewById(R.id.keyboardInput);
         setAttempt(attemptEdit.getText().toString());
-        updateHistory();
-        int temp = setNextWord();
-        if (temp == 0) {
-            showStats();
-        }
+        attemptEdit.setText("",null);
+        processSpell();
     }
 
-    public void spellVoice (View view) {
+    public void spellVoice (View view) { // spell word with voice
         //TODO
-        Toast.makeText(view.getContext(), "not implemented", 3).show();
+        Toast.makeText(view.getContext(), "not implemented", Toast.LENGTH_SHORT).show();
     }
 
-    public void hearWord(View view) {
+    public void processSpell(){ // after inputting with voice or keyboard
+        updateHistory();
+        setNextWord();
+    }
+
+    public void hearWord(View view) { // text to speech
         if (!getCurrWord().equals(null)) {
-            Toast.makeText(view.getContext(), getCurrWord(), 3).show();
+            sayWord.speak(getCurrWord(),TextToSpeech.QUEUE_FLUSH, null);
+            //Toast.makeText(view.getContext(), getCurrWord(), 3).show(); // uncomment if testing without volume
         }
     }
 
     // Abstract Methods
     public abstract void updateHistory();
-    public abstract int setNextWord();
+    public abstract void setNextWord();
     public abstract void config();
     public abstract void showStats();
-
-
-
 }

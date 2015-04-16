@@ -2,24 +2,20 @@ package com.example.beespelled.beespelled;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuizActivity extends SpellActivity {
-    public int wordsIndex = 0;
+    public int wordsIndex;
     public List<String> wrongs = new ArrayList<String>();
-
+    public List<String> attempts = new ArrayList<String>();
 
     @Override
     public void config() {
+        wordsIndex = 0;
         Bundle b = getIntent().getExtras();
         setListName(b.getString("currList"));
         setLayout(R.layout.activity_quiz);
@@ -30,55 +26,56 @@ public class QuizActivity extends SpellActivity {
     public void updateHistory() {
         if(!checkAttempt()) {
             wrongs.add(getCurrWord());
+            attempts.add(getAttempt());
         }
     }
 
     @Override
-    public int setNextWord() {
-        if(wordsIndex < words.size() - 1) {  //!words.get(wordsIndex + 1).equals(null)) {
-            //updateHistory();
-            //wrongs.add(getCurrWord()); // TESTING
-            wordsIndex++;
+    public void setNextWord() {
+        wordsIndex++;
+        if(wordsIndex < words.size()) {
             setCurrWord(words.get(wordsIndex));
-            return 1;
         }
         else { // end of list, show stats
-            return 0;
+            showStats();
         }
     }
 
+    @Override
     public void showStats() {
+        sayWord.shutdown(); // end text to speech engine
         int numWrong = wrongs.size();
         int numRight = words.size() - numWrong;
         String statText = "You got " + Integer.toString(numRight) + "/" + Integer.toString(words.size()) + " correct.\n";
-        statText += "Theses are the words you got wrong: \n";
-        int i = 0;
-        String currWrong = wrongs.get(i);
-        while( i < wrongs.size()) {//!currWrong.equals(null)) {
-            statText += "   " + currWrong;
-            i++;
-            if (i < wrongs.size()) {
-                statText += "\n";
+        if (wrongs.size() > 0) {
+            if (wrongs.size() == 1) { statText += "The word you got wrong is: \n"; }
+            else { statText += "These are the words you got wrong: \n"; }
+            int i = 0;
+            String currWrong;
+            String currAttempt;
+            while (i < wrongs.size()) {
                 currWrong = wrongs.get(i);
+                currAttempt = attempts.get(i);
+                statText += "   " + String.format("%1s", currWrong) + "\n";
+                statText += "   - You input: " + currAttempt;
+                if (i < wrongs.size()) {
+                    statText += "\n\n";
+                    i++;
+                }
             }
-
         }
-
+        else { statText += "Congratulations!"; }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Quiz Statistics");
+        builder.setTitle("Quiz Summary");
         LayoutInflater inflater = this.getLayoutInflater();
         View convertView = (View) inflater.inflate(R.layout.dialog_quizstats, null);
         builder.setView(convertView);
         final AlertDialog dialog = builder.create();
-        //EditText msg;
-        //msg = (EditText)findViewById(R.id.statMessage);
-        //msg.setText(statText, );
         dialog.setMessage(statText);
         dialog.show();
     }
 
     public void placeHolderButton(View view) {
-        Toast.makeText(view.getContext(), "not implemented", 3).show();
+        Toast.makeText(view.getContext(), "not implemented", Toast.LENGTH_SHORT).show();
     }
-
 }
