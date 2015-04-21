@@ -155,6 +155,7 @@ public class Data_Static {
 
     public static List<String> filterWordList(Context c, String list, int mastery){
         //TODO THOMAS
+        return null;
     }
 
     public static void newWordAttempt(Context c, String word, boolean correct){
@@ -164,7 +165,7 @@ public class Data_Static {
 
     public static void changeWord(){
         //TODO Thomas
-        
+
     }
 
     private static boolean listExists(Context c, String list) throws IOException{
