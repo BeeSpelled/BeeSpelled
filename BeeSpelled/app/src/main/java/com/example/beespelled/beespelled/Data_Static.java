@@ -10,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import android.util.Log;
 
 public class Data_Static {
@@ -149,7 +151,20 @@ public class Data_Static {
         catch(IOException e){
             e.printStackTrace();
         }
+    }
 
+    public static List<String> filterWordList(Context c, String list, int mastery){
+        //TODO THOMAS
+    }
+
+    public static void newWordAttempt(Context c, String word, boolean correct){
+        //TODO THOMAS
+
+    }
+
+    public static void changeWord(){
+        //TODO Thomas
+        
     }
 
     private static boolean listExists(Context c, String list) throws IOException{

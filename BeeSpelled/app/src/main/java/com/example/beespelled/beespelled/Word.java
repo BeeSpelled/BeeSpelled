@@ -2,19 +2,21 @@ package com.example.beespelled.beespelled;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Word implements Serializable {
     public String text;
     public int attempts;
     public int successes;
-    public Boolean[] history;
+    public List<Boolean> history;
     public short refs;
     
     public Word(String word){
         text=word;
         attempts=0;
         successes=0;
-        history=new Boolean[]{};
+        history=new ArrayList<Boolean>();
         refs = 1;
     }
 
@@ -35,24 +37,22 @@ public class Word implements Serializable {
         return attempts;
     }
 
-    public void setAttempts(int attempts) {
-        this.attempts = attempts;
+    public void incAttempts() {
+        this.attempts++;
     }
 
     public int getSuccesses() {
         return successes;
     }
 
-    public void setSuccesses(int successes) {
-        this.successes = successes;
-    }
+    public void incSuccesses() { this.successes++; }
 
-    public Boolean[] getHistory() {
+    public List<Boolean> getHistory() {
         return history;
     }
 
-    public void setHistory(Boolean[] history) {
-        this.history = history;
+    public void addToHistory() {
+        return; //TODO THOMAS
     }
 
     public int getRefs() {

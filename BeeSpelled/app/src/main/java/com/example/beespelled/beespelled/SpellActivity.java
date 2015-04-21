@@ -87,7 +87,7 @@ public abstract class SpellActivity extends ActionBarActivity implements OnInitL
     }
 
     public void spellVoice (View view) { // spell word with voice
-        //TODO
+        //TODO Thomas
         Toast.makeText(view.getContext(), "not implemented", Toast.LENGTH_SHORT).show();
     }
 
