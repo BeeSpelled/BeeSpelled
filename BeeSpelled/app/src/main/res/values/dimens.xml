@@ -6,11 +6,15 @@
     <dimen name="playActivityButtonHeights">125dp</dimen>
     <dimen name="playScreenButtonText">45sp</dimen>
     <dimen name="playScreenButtonGap">10sp</dimen>
-    <dimen name="quizButtonWidth">150sp</dimen>
-    <dimen name="quizButtonHeight">75sp</dimen>
-    <dimen name="quizScreenButtonGap">25sp</dimen>
 
     <dimen name="hearButtonWidth">300sp</dimen>
     <dimen name="hearButtonHeight">125sp</dimen>
+    <dimen name="quizButtonWidth">150sp</dimen>
+    <dimen name="quizButtonHeight">75sp</dimen>
+    <dimen name="quizScreenButtonGap">25sp</dimen>
     <dimen name="quizButtonsTextSize">25sp</dimen>
+    <dimen name="studyButtonWidth">150sp</dimen>
+    <dimen name="studyButtonHeight">75sp</dimen>
+    <dimen name="studyScreenButtonGap">25sp</dimen>
+    <dimen name="studyButtonsTextSize">25sp</dimen>
 </resources>

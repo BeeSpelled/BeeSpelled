@@ -48,7 +48,10 @@
     <string name="quitButton">QUIT</string>
     <string name="hearButton">HEAR WORD</string>
     <string name="keyboardInput">Type Word Here...</string>
-    
+
+    <string name="title_activity_study">StudyActivity</string>
+    <string name="studyHeader">Study!</string>
+
     <string-array name="ellipsis_array">
         <item>Edit...</item>
         <item>Delete</item>

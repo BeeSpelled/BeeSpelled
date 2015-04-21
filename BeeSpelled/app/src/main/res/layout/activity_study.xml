@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context=".StudyActivity"
+    android:background="@color/yellow"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/quizHeader"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0sp"
+        android:text="@string/studyHeader"
+        android:background="@color/background"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:inputType="none"
+        android:editable="false"
+        android:autoText="false"
+        android:elegantTextHeight="false"
+        android:textAlignment="center"
+        android:phoneNumber="false"
+        android:layout_gravity="center"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:capitalize="characters"
+        android:clickable="false" />
+
+    <Button
+        android:layout_width="@dimen/studyButtonWidth"
+        android:layout_height="@dimen/studyButtonHeight"
+        android:text="@string/infoButton"
+        android:id="@+id/info"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/quizHeader"
+        android:layout_alignStart="@+id/quizHeader"
+        android:layout_marginBottom="0sp"
+        android:background="@color/pink"
+        android:clickable="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/studyButtonsTextSize"
+        android:onClick="placeHolderButton" />
+
+    <Button
+        android:layout_width="@dimen/studyButtonWidth"
+        android:layout_height="@dimen/studyButtonHeight"
+        android:text="@string/quitButton"
+        android:id="@+id/quit"
+        android:background="@color/pink"
+        android:clickable="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/studyButtonsTextSize"
+        android:layout_alignTop="@+id/info"
+        android:layout_alignLeft="@+id/speech"
+        android:layout_alignStart="@+id/speech"
+        android:onClick="placeHolderButton" />
+
+    <Button
+        android:layout_width="@dimen/studyButtonWidth"
+        android:layout_height="@dimen/studyButtonHeight"
+        android:text="@string/keyboardButton"
+        android:id="@+id/keyboard"
+        android:clickable="true"
+        android:background="@color/blue"
+        android:textColor="@color/white"
+        android:textSize="@dimen/studyButtonsTextSize"
+        android:layout_above="@+id/info"
+        android:layout_alignLeft="@+id/info"
+        android:layout_alignStart="@+id/info"
+        android:layout_marginBottom="@dimen/studyScreenButtonGap"
+        android:onClick="spellKeyboard" />
+
+    <Button
+        android:layout_width="@dimen/studyButtonWidth"
+        android:layout_height="@dimen/studyButtonHeight"
+        android:text="@string/speechButton"
+        android:id="@+id/speech"
+        android:background="@color/blue"
+        android:clickable="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/studyButtonsTextSize"
+        android:layout_above="@+id/quit"
+        android:layout_alignRight="@+id/quizHeader"
+        android:layout_alignEnd="@+id/quizHeader"
+        android:layout_marginBottom="@dimen/studyScreenButtonGap"
+        android:onClick="spellVoice" />
+
+    <Button
+        android:layout_width="@dimen/hearButtonWidth"
+        android:layout_height="@dimen/hearButtonHeight"
+        android:text="@string/hearButton"
+        android:id="@+id/hearWord"
+        android:layout_below="@+id/quizHeader"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/studyScreenButtonGap"
+        android:background="@color/green"
+        android:clickable="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/studyButtonsTextSize"
+        android:nestedScrollingEnabled="false"
+        android:onClick="hearWord" />
+
+    <EditText
+        android:id="@+id/keyboardInput"
+        android:inputType="textNoSuggestions"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/keyboard"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/studyScreenButtonGap"
+        android:background="@color/white"
+        android:hint="@string/keyboardInput"
+        android:textColor="@color/black"
+        android:textSize="@dimen/studyButtonsTextSize" />
+</RelativeLayout>

@@ -64,7 +64,11 @@ public class PlayActivity extends ActionBarActivity {
     }
 
     public void studyButton(View view) {
-        //Toast.makeText(view.getContext(), "study unimplemented", 3).show();
+        Intent intent = new Intent(this, StudyActivity.class);
+        Bundle b = new Bundle();
+        b.putString("currList", selected);
+        intent.putExtras(b);
+        startActivity(intent);
     }
 
     public void optionButton(View view) {

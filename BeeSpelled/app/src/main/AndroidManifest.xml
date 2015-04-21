@@ -56,6 +56,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.beespelled.beespelled.PlayActivity" />
         </activity>
+        <activity
+            android:name=".StudyActivity"
+            android:label="@string/title_activity_study"
+            android:parentActivityName=".PlayActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.beespelled.beespelled.PlayActivity" />
+        </activity>
     </application>
 
 </manifest>
