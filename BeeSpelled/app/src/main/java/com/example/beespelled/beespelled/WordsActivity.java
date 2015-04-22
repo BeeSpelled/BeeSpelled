@@ -79,7 +79,8 @@ public class WordsActivity extends ListViewActivity {
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 EditText words = (EditText) finalView.findViewById(R.id.wordText);
-                String[] wordsText = words.getText().toString().split(" ");
+                String wordsString = words.getText().toString().replace(",", "");
+                String[] wordsText = wordsString.split(" ");
                 try {
                     Data_Static.addWordsToList(getApplicationContext(), list, wordsText);
                     Data_Static.createWords(getApplicationContext(), wordsText);

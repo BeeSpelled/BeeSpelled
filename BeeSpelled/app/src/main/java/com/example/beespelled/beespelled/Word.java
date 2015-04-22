@@ -13,7 +13,7 @@ public class Word implements Serializable {
     public int successes;
     public List<Boolean> history;
     public short refs;
-    private static final short lengthOfHistory = 10;
+    private static final short LENGTHOFHISTORY = 10;
     
     public Word(String word){
         text=word;
@@ -66,7 +66,7 @@ public class Word implements Serializable {
 
     private void addToHistory(Boolean b) {
         history.add(b);
-        if (history.size() >= 10) history.remove(0);
+        if (history.size() > LENGTHOFHISTORY) history.remove(0);
         Log.d("Word", "addToHistory: ");
         Log.d("Word", history.toString());
     }

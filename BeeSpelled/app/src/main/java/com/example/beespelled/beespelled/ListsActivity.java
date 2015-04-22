@@ -99,7 +99,6 @@ public class ListsActivity extends ListViewActivity{
 
     @Override
     public void showItems() throws IOException {
-        //final List<String> lists = Data_Static.getListNames(getApplicationContext());
         ListView listView = (ListView) findViewById(R.id.lists);
         final ListAdapter adapter = new ListAdapter(this);
         listView.setAdapter(adapter);

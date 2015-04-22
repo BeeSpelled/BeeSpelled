@@ -59,7 +59,6 @@ public class WordsAdapter extends BaseAdapter{
                             public void onClick(DialogInterface dialog, int which) {
                                 switch(which){
                                     case 0:
-//                                      TODO  Data_Static.changeWord(a.getApplicationContext(), list, name, newWord);
                                         a.editWords(name);
                                         break;
                                     case 1:
