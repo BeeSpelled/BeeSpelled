@@ -1,18 +1,25 @@
 package com.example.beespelled.beespelled;
 
+import android.content.ActivityNotFoundException;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.content.Intent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
+import android.util.Log;
 
 public abstract class SpellActivity extends ActionBarActivity implements OnInitListener {
+    protected static final int RESULT_SPEECH = 1;
+
     private String attempt;
     public String getAttempt() { return attempt;}
     public void setAttempt(String attempt) { this.attempt = attempt; }
@@ -88,7 +95,33 @@ public abstract class SpellActivity extends ActionBarActivity implements OnInitL
 
     public void spellVoice (View view) { // spell word with voice
         //TODO Thomas
-        Toast.makeText(view.getContext(), "not implemented", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(view.getContext(), "not implemented", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
+
+        try{
+            startActivityForResult(i, RESULT_SPEECH);
+        }
+        catch (ActivityNotFoundException e){
+            Toast t = Toast.makeText(getApplicationContext(), "Oops! Your device doesn't support Speech to Text!", Toast.LENGTH_SHORT);
+            t.show();
+        }
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("SpellActivity", "Here");
+        switch (requestCode){
+            case RESULT_SPEECH:
+                if (resultCode == RESULT_OK && data != null){
+                    ArrayList<String> text = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    Toast toast = Toast.makeText(getApplicationContext(), text.get(0), Toast.LENGTH_SHORT );
+                    toast.show();
+                    for (String item : text) Log.d("SpellActivity", item);
+                }
+
+        }
     }
 
     public void processSpell(){ // after inputting with voice or keyboard
