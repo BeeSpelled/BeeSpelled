@@ -1,5 +1,7 @@
 package com.example.beespelled.beespelled;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,13 +28,26 @@ public class OptionsActivity extends ActionBarActivity {
     }
 
     public void deleteData(View view){
-        try {
-            Data_Static.deleteAllData(getApplicationContext());
-            Data_Static.initializeData(getApplicationContext());
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Delete all application data?")
+                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        try {
+                            Data_Static.deleteAllData(getApplicationContext());
+                            Data_Static.initializeData(getApplicationContext());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+        // Create the AlertDialog object and return it
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override

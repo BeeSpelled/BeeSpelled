@@ -32,6 +32,7 @@
     <color name="background">#fffff6c3</color>
     <color name="black">#ff000000</color>
     <color name="red">#ffff5153</color>
+    <color name="gray">#ffbcbcbc</color>
 
     <string name="title_activity_play">PlayActivity</string>
     <string name="title_activity_lists">ListsActivity</string>
@@ -42,6 +43,8 @@
     <string name="cancel">Cancel</string>
     <string name="title_activity_words">WordsActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="delete_all">Are you sure you want to delete all application data?</string>
+    <string name="delete">Delete</string>
 
     <string name="playHeader">Play!</string>
     <string name="playScreenQuizButton">QUIZ</string>
