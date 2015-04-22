@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.util.Log;
@@ -153,19 +154,38 @@ public class Data_Static {
         }
     }
 
-    public static List<String> filterWordList(Context c, String list, int mastery){
-        //TODO THOMAS
+    public static List<String> filterWordList(Context c, String list, int mastery) throws IOException{
+        List<Word> words = new ArrayList<Word>();
+        WordList listObj = readWordList(c, list);
+        for (String word : listObj.getWords()) words.add(readWord(c, word));
+
+
         return null;
     }
 
-    public static void newWordAttempt(Context c, String word, boolean correct){
-        //TODO THOMAS
-
+    public static void newWordAttempt(Context c, String word, boolean correct) throws IOException{
+        Word w = readWord(c, word);
+        w.addAttempt(correct);
+        writeWord(c, w);
     }
 
-    public static void changeWord(Context c, String list, String oldWord, String newWord){
-        //TODO Thomas
-
+    public static boolean changeWord(Context c, String list, String oldWord, String newWord){
+        try { //Wanna catch exception with writing list before we delete old list
+            File path = getPath(c, LISTS_PATH, oldWord);
+//            File newPath = getPath(c, LISTS_PATH, newWord);
+            Word word = readWord(c, oldWord);
+            word.setText(newWord);
+            WordList listObj = readWordList(c, list);
+            listObj.getWords().set(listObj.getWords().indexOf(oldWord), newWord);
+            writeWord(c, word);
+            writeWordList(c, listObj);
+            if (!oldWord.equals(newWord)){path.delete();} //Prevents case of new name == old name from deleting file altogether
+            return true;
+        }
+        catch(IOException e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private static boolean listExists(Context c, String list) throws IOException{

@@ -1,6 +1,8 @@
 package com.example.beespelled.beespelled;
 
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,7 @@ public class Word implements Serializable {
     public int successes;
     public List<Boolean> history;
     public short refs;
+    private static final short lengthOfHistory = 10;
     
     public Word(String word){
         text=word;
@@ -33,26 +36,39 @@ public class Word implements Serializable {
         this.text = text;
     }
 
-    public int getAttempts() {
-        return attempts;
+//    public int getAttempts() {
+//        return attempts;
+//    }
+
+    public void addAttempt(Boolean success){
+        incAttempts();
+        if (success) incSuccesses();
+        addToHistory(success);
     }
 
-    public void incAttempts() {
+    public double getPercentage(){
+        return successes/(attempts * 1.0);
+    }
+
+    private void incAttempts() {
         this.attempts++;
     }
 
-    public int getSuccesses() {
-        return successes;
-    }
+//    private int getSuccesses() {
+//        return successes;
+//    }
 
-    public void incSuccesses() { this.successes++; }
+    private void incSuccesses() { this.successes++; }
 
     public List<Boolean> getHistory() {
         return history;
     }
 
-    public void addToHistory() {
-        return; //TODO THOMAS
+    private void addToHistory(Boolean b) {
+        history.add(b);
+        if (history.size() >= 10) history.remove(0);
+        Log.d("Word", "addToHistory: ");
+        Log.d("Word", history.toString());
     }
 
     public int getRefs() {

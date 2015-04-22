@@ -49,11 +49,12 @@ public class WordList implements Serializable{
     }
 
     public String getWordStats(Context c, String word, int recent) {
+        //TODO maybe move?
         String stats = "There are no statistics available for this word";
         try {
             Word w = Data_Static.getWordData(c, word);
             int successes = 0;
-            List<Boolean> history = w.history;
+            List<Boolean> history = w.getHistory();
             while (recent>0) {
                 if (recent > history.size()) recent--;
                 else if (recent == history.size()) break;
