@@ -58,6 +58,11 @@ public class PlayActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void homeButton(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void quizButton(View view) {
         Intent intent = new Intent(this, QuizActivity.class);
         Bundle b = new Bundle();
