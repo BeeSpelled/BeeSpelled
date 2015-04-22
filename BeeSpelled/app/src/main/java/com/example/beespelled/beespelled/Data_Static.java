@@ -226,7 +226,7 @@ public class Data_Static {
         oo.close();
     }
 
-    private static WordList readWordList(Context c, String name) throws IOException{
+    public static WordList readWordList(Context c, String name) throws IOException{
         WordList list = null;
         File dir = getPath(c,LISTS_PATH,name);
         ObjectInputStream oi = new ObjectInputStream(new FileInputStream(dir));

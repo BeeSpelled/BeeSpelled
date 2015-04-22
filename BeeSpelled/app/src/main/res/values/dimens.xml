@@ -17,4 +17,6 @@
     <dimen name="studyButtonHeight">75sp</dimen>
     <dimen name="studyScreenButtonGap">25sp</dimen>
     <dimen name="studyButtonsTextSize">25sp</dimen>
+    <dimen name="play_options_button_text_size">30sp</dimen>
+    <dimen name="playOptionsButtonHeights">100sp</dimen>
 </resources>

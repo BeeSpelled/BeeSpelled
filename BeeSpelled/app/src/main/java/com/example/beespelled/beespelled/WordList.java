@@ -50,7 +50,7 @@ public class WordList implements Serializable{
 
     public String getWordStats(Context c, String word, int recent) {
         //TODO maybe move?
-        String stats = "There are no statistics available for this word";
+        String stats = word + ": There are no statistics available for this word";
         try {
             Word w = Data_Static.getWordData(c, word);
             int successes = 0;
@@ -70,4 +70,15 @@ public class WordList implements Serializable{
         }
         return stats;
     }
+
+    public String getStats(Context c, int recent) {
+        //TODO maybe move also
+        String stats = "Statistics for " + name + ":\n";
+        for(String word : words) {
+            stats += getWordStats(c, word, recent) + "\n";
+        }
+        return stats;
+    }
+
+
 }

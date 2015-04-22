@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.SeekBar;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,6 +21,8 @@ import java.util.List;
 
 public class PlayActivity extends ActionBarActivity {
     String selected = null;
+    int mastery = 5;
+    SeekBar masteryFlex = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +76,68 @@ public class PlayActivity extends ActionBarActivity {
 
     public void optionButton(View view) {
         //Toast.makeText(view.getContext(), "options unimplemented", 3).show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Options");
+        LayoutInflater inflater = this.getLayoutInflater();
+        View convertView = (View) inflater.inflate(R.layout.dialog_play_option, null);
+
+        masteryFlex = (SeekBar) convertView.findViewById(R.id.masteryFlexSeekBar);
+
+        masteryFlex.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int progressChanged = 0;
+
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+                progressChanged = progress;
+            }
+
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                progressChanged++;
+                Toast.makeText(PlayActivity.this,"Mastery Changed to:"+progressChanged, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setView(convertView);
+        final AlertDialog dialog = builder.create();
+
+        dialog.show();
+    }
+
+    public void selectListButton(View view) {
+        //Toast.makeText(view.getContext(), "options unimplemented", 3).show();
         try {
             selectList();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public  void viewStatsButton(View view) {
+        WordList currList;
+        String stats = "";
+        try {
+            currList = Data_Static.readWordList(getApplicationContext(), selected);
+            stats = currList.getStats(getApplicationContext(), currList.words.size());
+        } catch (IOException e) {
+            stats = "Failed to fetch stats.";
+            e.printStackTrace();
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Current List Statistics");
+        LayoutInflater inflater = this.getLayoutInflater();
+        View convertView = (View) inflater.inflate(R.layout.dialog_quizstats, null);
+        builder.setView(convertView);
+        final AlertDialog dialog = builder.create();
+        dialog.setMessage(stats);
+        dialog.show();
+    }
+
+    public  void clearHistoryButton(View view) {
+        Toast.makeText(view.getContext(), "options unimplemented", 3).show();
+
     }
 
     public void selectList() throws IOException {

@@ -79,4 +79,8 @@ public class StudyActivity extends SpellActivity {
     public void placeHolderButton(View view) {
         Toast.makeText(view.getContext(), "not implemented", Toast.LENGTH_SHORT).show();
     }
+
+    public int chance (int idx) {
+        return 1;
+    }
 }

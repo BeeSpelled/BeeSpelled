@@ -63,6 +63,9 @@
 
     <string name="title_activity_study">StudyActivity</string>
     <string name="studyHeader">Study!</string>
+    <string name="play_select_list_button_text">CHANGE LIST</string>
+    <string name="play_options_view_stats_button_text">VIEW STATS</string>
+    <string name="play_screen_clear_history_button_text">CLEAR LIST\'S HISTORY</string>
 
     <string-array name="ellipsis_array">
         <item>Edit…</item>

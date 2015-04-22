@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".PlayActivity"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/playOptionsButtonHeights"
+        android:text="@string/play_select_list_button_text"
+        android:id="@+id/selectList"
+        android:onClick="selectListButton"
+        android:textAlignment="center"
+        android:clickable="true"
+        android:textColor="@color/white"
+        android:background="@color/pink"
+        android:textSize="@dimen/play_options_button_text_size"
+        android:layout_above="@+id/viewStats"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/playScreenButtonGap"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/playOptionsButtonHeights"
+        android:text="@string/play_options_view_stats_button_text"
+        android:id="@+id/viewStats"
+        android:background="@color/blue"
+        android:focusableInTouchMode="false"
+        android:textSize="@dimen/play_options_button_text_size"
+        android:textColor="@color/white"
+        android:onClick="viewStatsButton"
+        android:clickable="true"
+        android:layout_above="@+id/clearHistoryButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/playScreenButtonGap"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/playOptionsButtonHeights"
+        android:text="@string/play_screen_clear_history_button_text"
+        android:id="@+id/clearHistoryButton"
+        android:background="@color/green"
+        android:clickable="true"
+        android:onClick="clearHistoryButton"
+        android:textColor="@color/white"
+        android:textSize="@dimen/play_options_button_text_size"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/viewStats"
+        android:layout_alignEnd="@+id/viewStats" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/masteryFlexSeekBar"
+        android:background="@color/yellow"
+        android:max="9"
+        android:progress="5"
+        android:progressBackgroundTint="@color/white"
+        android:progressTint="@color/ripple_material_dark"
+        android:thumbTint="@color/button_material_light"
+        android:clickable="false"
+        android:layout_below="@+id/flexEasy"
+        android:layout_alignLeft="@+id/selectList"
+        android:layout_alignStart="@+id/selectList"
+        android:layout_alignRight="@+id/selectList"
+        android:layout_alignEnd="@+id/selectList" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/flexText"
+        android:text="Word Mastery: "
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/masteryFlexSeekBar"
+        android:layout_alignStart="@+id/masteryFlexSeekBar"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:inputType="none"
+        android:editable="false"
+        android:autoText="false"
+        android:background="@color/background"
+        android:textSize="@dimen/play_options_button_text_size" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/flexEasy"
+        android:text="Easier"
+        android:textColor="@color/black"
+        android:layout_below="@+id/flexText"
+        android:layout_alignLeft="@+id/flexText"
+        android:layout_alignStart="@+id/flexText"
+        android:inputType="none"
+        android:autoText="false"
+        android:background="@color/background" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/flexHard"
+        android:layout_above="@+id/masteryFlexSeekBar"
+        android:layout_alignRight="@+id/masteryFlexSeekBar"
+        android:layout_alignEnd="@+id/masteryFlexSeekBar"
+        android:text="Harder"
+        android:textColor="@color/black"
+        android:inputType="none"
+        android:autoText="false"
+        android:background="@color/background" />
+</RelativeLayout>

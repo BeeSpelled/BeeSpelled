@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,11 @@ public class QuizActivity extends SpellActivity {
 
     @Override
     public void updateHistory() {
+        try {
+            Data_Static.newWordAttempt(getApplicationContext(), getCurrWord(), checkAttempt());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if(!checkAttempt()) {
             wrongs.add(getCurrWord());
             attempts.add(getAttempt());
