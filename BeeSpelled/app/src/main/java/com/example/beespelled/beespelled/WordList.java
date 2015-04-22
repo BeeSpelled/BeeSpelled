@@ -55,9 +55,9 @@ public class WordList implements Serializable{
             Word w = Data_Static.getWordData(c, word);
             int successes = 0;
             List<Boolean> history = w.getHistory();
+            if(recent > history.size()) recent = history.size();
             while (recent>0) {
-                if (recent > history.size()) recent--;
-                else if (recent == history.size()) break;
+                if (recent == history.size()) break;
                 else history.remove(0);
             }
             for (int i = 0; i < recent; i++) {
