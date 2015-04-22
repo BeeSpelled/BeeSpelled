@@ -9,6 +9,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,6 +19,7 @@
         </activity>
         <activity
             android:name=".PlayActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_play"
             android:parentActivityName=".MainActivity" >
             <meta-data
@@ -26,6 +28,7 @@
         </activity>
         <activity
             android:name=".ListsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_lists"
             android:parentActivityName=".MainActivity" >
             <meta-data
@@ -34,6 +37,7 @@
         </activity>
         <activity
             android:name=".OptionsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_options"
             android:parentActivityName=".MainActivity" >
             <meta-data
@@ -50,6 +54,7 @@
         </activity>
         <activity
             android:name=".QuizActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_quiz"
             android:parentActivityName=".PlayActivity" >
             <meta-data
@@ -58,6 +63,7 @@
         </activity>
         <activity
             android:name=".StudyActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_study"
             android:parentActivityName=".PlayActivity" >
             <meta-data
