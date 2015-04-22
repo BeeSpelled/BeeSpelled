@@ -39,6 +39,40 @@ public class Data_Static {
         for (String i : files) Log.d(CLASS, i);
     }
 
+    public static String getListStats(Context c, String list, int recent) throws IOException{
+        WordList listObj = readWordList(c, list);
+        String stats = "Statistics for " + list + ":\n";
+        StringBuilder sb = new StringBuilder(stats);
+        for(String word : listObj.getWords()) {
+            sb.append(getWordStats(c, word, recent));
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    public static String getWordStats(Context c, String word, int recent){
+        String stats = word + ": There are no statistics available for this word";
+        try {
+            Word w = Data_Static.getWordData(c, word);
+            int successes = 0;
+            List<Boolean> history = w.getHistory();
+            if(recent > history.size()) recent = history.size();
+            while (recent>0) {
+                if (recent == history.size()) break;
+                else history.remove(0);
+            }
+            for (int i = 0; i < recent; i++) {
+                if (history.get(i) == true) successes++;
+            }
+            int p = (int)w.getPercentage() * 100;
+            if(recent<0) recent = 0;
+            stats = "Statistics for " + word + ": " + p + "% success rate with " + successes + " out of the last " + recent + " correct";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stats;
+    }
+
     public static void deleteAllData(Context c) throws IOException{
         File[] files = getPath(c, LISTS_PATH).listFiles();
         for (File f : files) {
@@ -74,8 +108,8 @@ public class Data_Static {
         }
         catch (IOException e){
             e.printStackTrace();
+            return null;
         }
-        return null;
 
     }
 
@@ -119,7 +153,6 @@ public class Data_Static {
         }
         writeWordList(c, listObj);
     }
-
 
     public static Word getWordData(Context c, String word) throws IOException{
         return readWord(c, word);
@@ -166,6 +199,12 @@ public class Data_Static {
     public static void newWordAttempt(Context c, String word, boolean correct) throws IOException{
         Word w = readWord(c, word);
         w.addAttempt(correct);
+        writeWord(c, w);
+    }
+
+    public static void clearWordHistory(Context c, String word) throws IOException{
+        Word w = readWord(c, word);
+        w.clearHistory();
         writeWord(c, w);
     }
 
@@ -226,7 +265,7 @@ public class Data_Static {
         oo.close();
     }
 
-    public static WordList readWordList(Context c, String name) throws IOException{
+    private static WordList readWordList(Context c, String name) throws IOException{
         WordList list = null;
         File dir = getPath(c,LISTS_PATH,name);
         ObjectInputStream oi = new ObjectInputStream(new FileInputStream(dir));

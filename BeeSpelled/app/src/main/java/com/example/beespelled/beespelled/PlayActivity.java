@@ -119,8 +119,7 @@ public class PlayActivity extends ActionBarActivity {
         WordList currList;
         String stats = "";
         try {
-            currList = Data_Static.readWordList(getApplicationContext(), selected);
-            stats = currList.getStats(getApplicationContext(), currList.words.size());
+            stats = Data_Static.getListStats(getApplicationContext(), selected, 10);
         } catch (IOException e) {
             stats = "Failed to fetch stats.";
             e.printStackTrace();
@@ -136,7 +135,7 @@ public class PlayActivity extends ActionBarActivity {
     }
 
     public  void clearHistoryButton(View view) {
-        Toast.makeText(view.getContext(), "options unimplemented", 3).show();
+        Toast.makeText(view.getContext(), "options unimplemented", Toast.LENGTH_SHORT).show();
 
     }
 
