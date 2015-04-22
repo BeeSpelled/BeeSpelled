@@ -53,6 +53,7 @@ public class ListsActivity extends ListViewActivity{
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void addItem(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -91,8 +92,9 @@ public class ListsActivity extends ListViewActivity{
     }
 
     @Override
-    public void backButton(View view) {
-
+    public void homeButton(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override

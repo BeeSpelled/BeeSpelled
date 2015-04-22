@@ -3,7 +3,7 @@
 
     <string name="app_name">Bee Spelled</string>
     <string name="add">Add</string>
-    <string name="back">Back</string>
+    <string name="home">Home</string>
     <string name="action_settings">Settings</string>
     <string name="play">Play!</string>
     <string name="test">Test</string>
@@ -11,10 +11,18 @@
     <string name="history">History</string>
     <string name="lists">Words</string>
     <string name="options">Options</string>
+    <string name="help">Help</string>
     <string name="delete_data">Delete All Data</string>
     <string name="word_lists">Word Lists</string>
     <string name="listName">Name of List</string>
-    <string name="listText">Enter Words...</string>
+    <string name="listText">Enter Words…</string>
+    <string name="helpText">Welcome to Bee Spelled! To create and edit your word lists, select the
+    "Words" button from the home screen. You will be shown all of your current lists.
+    Selecting the ellipsis next to a list will allow you to edit a list name or delete a list.
+    To add a new list, tap the plus button in the bottom right hand corner of the screen.
+    You will be prompted for a list name and will then be directed to the words screen. Adding, editing,
+    and deleting words works the same as with lists. At any time, the home icon in the bottom left hand
+    corner will take you back to the home screen.</string>
 
     <color name="yellow">#ffe6b800</color>
     <color name="blue">#ff1aa2e6</color>
@@ -23,6 +31,7 @@
     <color name="white">#ffffff</color>
     <color name="background">#fffff6c3</color>
     <color name="black">#ff000000</color>
+    <color name="red">#ffff5153</color>
 
     <string name="title_activity_play">PlayActivity</string>
     <string name="title_activity_lists">ListsActivity</string>
@@ -47,13 +56,13 @@
     <string name="infoButton">INFO</string>
     <string name="quitButton">QUIT</string>
     <string name="hearButton">HEAR WORD</string>
-    <string name="keyboardInput">Type Word Here...</string>
+    <string name="keyboardInput">Type Word Here…</string>
 
     <string name="title_activity_study">StudyActivity</string>
     <string name="studyHeader">Study!</string>
 
     <string-array name="ellipsis_array">
-        <item>Edit...</item>
+        <item>Edit…</item>
         <item>Delete</item>
     </string-array>
 

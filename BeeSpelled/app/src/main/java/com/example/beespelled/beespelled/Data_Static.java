@@ -163,7 +163,7 @@ public class Data_Static {
 
     }
 
-    public static void changeWord(){
+    public static void changeWord(Context c, String list, String oldWord, String newWord){
         //TODO Thomas
 
     }

@@ -63,8 +63,9 @@ public class WordsActivity extends ListViewActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void backButton(View view){
-
+    public void homeButton(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -110,5 +111,37 @@ public class WordsActivity extends ListViewActivity {
 
             }
         });
+    }
+
+    public void editWords(final String word) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Edit Word Text");
+        LayoutInflater inflater = this.getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_words,null);
+        EditText editText = (EditText)view.findViewById(R.id.wordText);
+        editText.setText(word);
+        builder.setView(view);
+        final View finalView = view;
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                EditText words = (EditText) finalView.findViewById(R.id.wordText);
+                String newWord = words.getText().toString();
+                try {
+                    Data_Static.changeWord(getApplicationContext(), list, word, newWord);
+                    showItems();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
