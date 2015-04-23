@@ -57,6 +57,7 @@ public class Data_Static {
             int successes = 0;
             List<Boolean> history = w.getHistory();
             if(recent > history.size()) recent = history.size();
+//            history = history.subList(history.size() - recent, history.size()-1);
             while (recent>0) {
                 if (recent == history.size()) break;
                 else history.remove(0);

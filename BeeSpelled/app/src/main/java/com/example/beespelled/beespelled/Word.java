@@ -14,6 +14,7 @@ public class Word implements Serializable {
     public List<Boolean> history;
     public short refs;
     private static final short LENGTHOFHISTORY = 10;
+    private static final long serialVersionUID = 2L;
     
     public Word(String word){
         text=word;

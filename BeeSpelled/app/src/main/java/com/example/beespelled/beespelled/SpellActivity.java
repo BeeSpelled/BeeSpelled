@@ -116,8 +116,13 @@ public abstract class SpellActivity extends ActionBarActivity implements OnInitL
             case RESULT_SPEECH:
                 if (resultCode == RESULT_OK && data != null){
                     ArrayList<String> text = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    Toast toast = Toast.makeText(getApplicationContext(), text.get(0), Toast.LENGTH_SHORT );
-                    toast.show();
+//                    Toast toast = Toast.makeText(getApplicationContext(), text.get(0), Toast.LENGTH_SHORT );
+//                    toast.show();
+                    EditText attemptEdit = null;
+                    attemptEdit = (EditText)this.findViewById(R.id.keyboardInput);
+                    setAttempt(text.get(0));
+                    attemptEdit.setText(text.get(0),null);
+                    processSpell();
                     for (String item : text) Log.d("SpellActivity", item);
                 }
 

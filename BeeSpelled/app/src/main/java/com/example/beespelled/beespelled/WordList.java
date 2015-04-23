@@ -10,6 +10,7 @@ import java.util.List;
 public class WordList implements Serializable{
     public String name;
     public List<String> words;
+    private static final long serialVersionUID = 1L;
 
     public WordList(String n, List<String> w){
         name=n;
