@@ -12,6 +12,7 @@ import android.widget.Toast;
 import android.content.Intent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
@@ -53,6 +54,7 @@ public abstract class SpellActivity extends ActionBarActivity implements OnInitL
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Collections.shuffle(words);
         setCurrWord(words.get(0));
         setContentView(getLayout());
     }
