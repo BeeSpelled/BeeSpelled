@@ -136,6 +136,11 @@ public abstract class SpellActivity extends ActionBarActivity implements OnInitL
         }
     }
 
+    public void quitButton(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     // Abstract Methods
     public abstract void updateHistory();
     public abstract void setNextWord();

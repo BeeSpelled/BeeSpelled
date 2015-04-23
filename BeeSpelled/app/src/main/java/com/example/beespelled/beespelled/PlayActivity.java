@@ -102,13 +102,18 @@ public class PlayActivity extends ActionBarActivity {
 
             public void onStopTrackingTouch(SeekBar seekBar) {
                 mastery = progressChanged;
-                Toast.makeText(PlayActivity.this,"Mastery changed to:"+progressChanged, Toast.LENGTH_SHORT).show();
+                Toast.makeText(PlayActivity.this,"Mastery changed to: "+progressChanged, Toast.LENGTH_SHORT).show();
             }
         });
 
         builder.setView(convertView);
         final AlertDialog dialog = builder.create();
-
+        convertView.findViewById(R.id.optOKButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
         dialog.show();
     }
 
@@ -122,7 +127,6 @@ public class PlayActivity extends ActionBarActivity {
     }
 
     public  void viewStatsButton(View view) {
-        WordList currList;
         String stats = "";
         try {
             stats = Data_Static.getListStats(getApplicationContext(), selected, 10);
@@ -131,18 +135,25 @@ public class PlayActivity extends ActionBarActivity {
             e.printStackTrace();
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Current List Statistics");
+        builder.setTitle("Selected List's Statistics");
         LayoutInflater inflater = this.getLayoutInflater();
         View convertView = (View) inflater.inflate(R.layout.dialog_quizstats, null);
         builder.setView(convertView);
         final AlertDialog dialog = builder.create();
-        dialog.setMessage(stats);
+        TextView tv = (TextView) convertView.findViewById(R.id.message);
+        tv.setText(stats);
+        convertView.findViewById(R.id.OKbutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
         dialog.show();
     }
 
     public  void clearHistoryButton(View view) {
         try {
-            Data_Static.clearWordHistory(getApplicationContext(), selected);
+            Data_Static.clearListHistory(getApplicationContext(), selected);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -7,12 +7,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:visibility="visible">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/quizHeader"
+        android:id="@+id/studyHeader"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="0sp"
@@ -31,24 +32,21 @@
         android:layout_gravity="center"
         android:layout_alignParentRight="false"
         android:layout_alignParentEnd="false"
-        android:layout_alignParentStart="false"
-        android:capitalize="characters"
-        android:clickable="false" />
+        android:layout_alignParentStart="false" />
 
     <Button
         android:layout_width="@dimen/studyButtonWidth"
         android:layout_height="@dimen/studyButtonHeight"
-        android:text="@string/infoButton"
+        android:text="@string/study_stats_button_text"
         android:id="@+id/info"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/quizHeader"
-        android:layout_alignStart="@+id/quizHeader"
-        android:layout_marginBottom="0sp"
         android:background="@color/pink"
         android:clickable="true"
         android:textColor="@color/white"
         android:textSize="@dimen/studyButtonsTextSize"
-        android:onClick="placeHolderButton" />
+        android:onClick="statsButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/keyboardInput"
+        android:layout_alignEnd="@+id/keyboardInput" />
 
     <Button
         android:layout_width="@dimen/studyButtonWidth"
@@ -59,25 +57,25 @@
         android:clickable="true"
         android:textColor="@color/white"
         android:textSize="@dimen/studyButtonsTextSize"
-        android:layout_alignTop="@+id/info"
-        android:layout_alignLeft="@+id/speech"
-        android:layout_alignStart="@+id/speech"
-        android:onClick="placeHolderButton" />
+        android:onClick="quitButton"
+        android:layout_below="@+id/speech"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="@dimen/studyButtonWidth"
         android:layout_height="@dimen/studyButtonHeight"
-        android:text="@string/keyboardButton"
+        android:text="@string/submitButtonText"
         android:id="@+id/keyboard"
         android:clickable="true"
         android:background="@color/blue"
         android:textColor="@color/white"
         android:textSize="@dimen/studyButtonsTextSize"
+        android:onClick="spellKeyboard"
         android:layout_above="@+id/info"
-        android:layout_alignLeft="@+id/info"
-        android:layout_alignStart="@+id/info"
-        android:layout_marginBottom="@dimen/studyScreenButtonGap"
-        android:onClick="spellKeyboard" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/playScreenButtonGap" />
 
     <Button
         android:layout_width="@dimen/studyButtonWidth"
@@ -88,18 +86,18 @@
         android:clickable="true"
         android:textColor="@color/white"
         android:textSize="@dimen/studyButtonsTextSize"
-        android:layout_above="@+id/quit"
-        android:layout_alignRight="@+id/quizHeader"
-        android:layout_alignEnd="@+id/quizHeader"
-        android:layout_marginBottom="@dimen/studyScreenButtonGap"
-        android:onClick="spellVoice" />
+        android:onClick="spellVoice"
+        android:layout_below="@+id/keyboardInput"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/playScreenButtonGap" />
 
     <Button
         android:layout_width="@dimen/hearButtonWidth"
         android:layout_height="@dimen/hearButtonHeight"
         android:text="@string/hearButton"
         android:id="@+id/hearWord"
-        android:layout_below="@+id/quizHeader"
+        android:layout_below="@+id/studyHeader"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/studyScreenButtonGap"
         android:background="@color/green"
@@ -121,4 +119,5 @@
         android:hint="@string/keyboardInput"
         android:textColor="@color/black"
         android:textSize="@dimen/studyButtonsTextSize" />
+
 </RelativeLayout>

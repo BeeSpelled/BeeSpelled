@@ -50,14 +50,14 @@ public class Data_Static {
         return sb.toString();
     }
 
-    public static String getWordStats(Context c, String word, int recent){
+    public static String getWordStats(Context c, String word, int rcnt){
+        int recent = rcnt;
         String stats = word + ": There are no statistics available for this word";
         try {
             Word w = Data_Static.getWordData(c, word);
             int successes = 0;
             List<Boolean> history = w.getHistory();
             if(recent > history.size()) recent = history.size();
-//            history = history.subList(history.size() - recent, history.size()-1);
             while (recent>0) {
                 if (recent == history.size()) break;
                 else history.remove(0);
@@ -67,7 +67,7 @@ public class Data_Static {
             }
             int p = (int)w.getPercentage() * 100;
             if(recent<0) recent = 0;
-            stats = "Statistics for " + word + ": " + p + "% success rate with " + successes + " out of the last " + recent + " correct";
+            stats = "Statistics for " + word + ": " + p + "% success rate with " + successes + " out of the last " + recent + " correct\n";
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -240,10 +240,12 @@ public class Data_Static {
         writeWord(c, w);
     }
 
-    public static void clearListHistory(Context c, String word) throws IOException{
-        Word w = readWord(c, word);
-        w.clearHistory();
-        writeWord(c, w);
+    public static void clearListHistory(Context c, String list) throws IOException{
+        List<String> l = getWordsByList(c, list);
+        for (String word : l) {
+            clearWordHistory(c, word);
+        }
+        //writeWord(c, w);
     }
 
     public static boolean changeWord(Context c, String list, String oldWord, String newWord){

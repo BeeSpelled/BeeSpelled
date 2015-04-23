@@ -1,11 +1,12 @@
 package com.example.beespelled.beespelled;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
-
+import android.widget.TextView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,11 +84,20 @@ public class QuizActivity extends SpellActivity {
         View convertView = (View) inflater.inflate(R.layout.dialog_quizstats, null);
         builder.setView(convertView);
         final AlertDialog dialog = builder.create();
-        dialog.setMessage(statText);
+        //dialog.setMessage(statText);
+        TextView tv = (TextView) convertView.findViewById(R.id.message);
+        tv.setText(statText);
+        convertView.findViewById(R.id.OKbutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goBack();
+            }
+        });
         dialog.show();
     }
 
-    public void placeHolderButton(View view) {
-        Toast.makeText(view.getContext(), "not implemented", Toast.LENGTH_SHORT).show();
+    public void goBack() {
+        Intent intent = new Intent(this, PlayActivity.class);
+        startActivity(intent);
     }
 }

@@ -55,17 +55,20 @@
     <string name="title_activity_quiz">QuizActivity</string>
     <string name="quizHeader">Quiz!</string>
     <string name="keyboardButton">KEYBOARD</string>
-    <string name="speechButton">SPEECH</string>
+    <string name="speechButton">SPEAK WORD</string>
     <string name="infoButton">INFO</string>
     <string name="quitButton">QUIT</string>
     <string name="hearButton">HEAR WORD</string>
-    <string name="keyboardInput">Type Word Here…</string>
+    <string name="keyboardInput">Speak word or type here...</string>
 
     <string name="title_activity_study">StudyActivity</string>
     <string name="studyHeader">Study!</string>
     <string name="play_select_list_button_text">CHANGE LIST</string>
     <string name="play_options_view_stats_button_text">VIEW STATS</string>
     <string name="play_screen_clear_history_button_text">CLEAR LIST\'S HISTORY</string>
+    <string name="OK_Buttons">OK</string>
+    <string name="study_stats_button_text">STATS</string>
+    <string name="submitButtonText">SUBMIT</string>
 
     <string-array name="ellipsis_array">
         <item>Edit…</item>

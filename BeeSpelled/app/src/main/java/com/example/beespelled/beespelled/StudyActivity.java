@@ -1,11 +1,13 @@
 package com.example.beespelled.beespelled;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
-
+import android.content.Intent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,26 +52,24 @@ public class StudyActivity extends SpellActivity {
     @Override
     public void setNextWord() {
         wordsIndex++;
-        if (words.size() == 0) {
-            Toast.makeText(StudyActivity.this, "increasing mastery", Toast.LENGTH_SHORT).show();
-            mastery++;
+        if(wordsIndex < words.size()) {
+            setCurrWord(words.get(wordsIndex));
+        }
+        else { // end of list
             wordsIndex = 0;
             try {
                 words = Data_Static.filterWordList(getApplicationContext(), getListName(), mastery);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Collections.shuffle(words);
-        }
-        if(wordsIndex < words.size()) {
-            setCurrWord(words.get(wordsIndex));
-        }
-        else { // end of list, show stats
-            wordsIndex = 0;
-            try {
-                words = Data_Static.filterWordList(getApplicationContext(), getListName(), mastery);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (words.size() == 0) { // all words mastered
+                Toast.makeText(StudyActivity.this, "increasing mastery", Toast.LENGTH_SHORT).show();
+                mastery++;
+                try {
+                    words = Data_Static.filterWordList(getApplicationContext(), getListName(), mastery);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             Collections.shuffle(words);
             setCurrWord(words.get(0));
@@ -78,39 +78,33 @@ public class StudyActivity extends SpellActivity {
 
     @Override
     public void showStats() {
-        sayWord.shutdown(); // end text to speech engine
-        int numWrong = wrongs.size();
-        int numRight = words.size() - numWrong;
-        String statText = "You got " + Integer.toString(numRight) + "/" + Integer.toString(words.size()) + " correct.\n";
-        if (wrongs.size() > 0) {
-            if (wrongs.size() == 1) { statText += "The word you got wrong is: \n"; }
-            else { statText += "These are the words you got wrong: \n"; }
-            int i = 0;
-            String currWrong;
-            String currAttempt;
-            while (i < wrongs.size()) {
-                currWrong = wrongs.get(i);
-                currAttempt = attempts.get(i);
-                statText += "   " + String.format("%1s", currWrong) + "\n";
-                statText += "   - You input: " + currAttempt;
-                if (i < wrongs.size()) {
-                    statText += "\n\n";
-                    i++;
-                }
-            }
+
+    }
+
+    public void statsButton(View view) {
+        String stats = "";
+        try {
+            stats = Data_Static.getListStats(getApplicationContext(), getListName(), 10);
+        } catch (IOException e) {
+            stats = "Failed to fetch stats.";
+            e.printStackTrace();
         }
-        else { statText += "Congratulations!"; }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Quiz Summary");
+        builder.setTitle("Selected List's Statistics");
         LayoutInflater inflater = this.getLayoutInflater();
         View convertView = (View) inflater.inflate(R.layout.dialog_quizstats, null);
         builder.setView(convertView);
         final AlertDialog dialog = builder.create();
-        dialog.setMessage(statText);
+        TextView tv = (TextView) convertView.findViewById(R.id.message);
+        tv.setText(stats);
+        convertView.findViewById(R.id.OKbutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
         dialog.show();
-    }
 
-    public void placeHolderButton(View view) {
-        Toast.makeText(view.getContext(), "not implemented", Toast.LENGTH_SHORT).show();
+
     }
 }

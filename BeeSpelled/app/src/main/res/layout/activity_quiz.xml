@@ -36,46 +36,33 @@
     <Button
         android:layout_width="@dimen/quizButtonWidth"
         android:layout_height="@dimen/quizButtonHeight"
-        android:text="@string/infoButton"
-        android:id="@+id/info"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/quizHeader"
-        android:layout_alignStart="@+id/quizHeader"
-        android:layout_marginBottom="0sp"
-        android:background="@color/pink"
-        android:clickable="true"
-        android:textColor="@color/white"
-        android:textSize="@dimen/quizButtonsTextSize"
-        android:onClick="placeHolderButton" />
-
-    <Button
-        android:layout_width="@dimen/quizButtonWidth"
-        android:layout_height="@dimen/quizButtonHeight"
         android:text="@string/quitButton"
         android:id="@+id/quit"
         android:background="@color/pink"
         android:clickable="true"
         android:textColor="@color/white"
         android:textSize="@dimen/quizButtonsTextSize"
-        android:layout_alignTop="@+id/info"
-        android:layout_alignLeft="@+id/speech"
-        android:layout_alignStart="@+id/speech"
-        android:onClick="placeHolderButton" />
+        android:onClick="quitButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/keyboardInput"
+        android:layout_alignEnd="@+id/keyboardInput"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="@dimen/quizButtonWidth"
         android:layout_height="@dimen/quizButtonHeight"
-        android:text="@string/keyboardButton"
+        android:text="@string/submitButtonText"
         android:id="@+id/keyboard"
         android:clickable="true"
         android:background="@color/blue"
         android:textColor="@color/white"
         android:textSize="@dimen/quizButtonsTextSize"
-        android:layout_above="@+id/info"
-        android:layout_alignLeft="@+id/info"
-        android:layout_alignStart="@+id/info"
-        android:layout_marginBottom="@dimen/quizScreenButtonGap"
-        android:onClick="spellKeyboard" />
+        android:onClick="spellKeyboard"
+        android:layout_above="@+id/quit"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/quizScreenButtonGap" />
 
     <Button
         android:layout_width="@dimen/quizButtonWidth"
@@ -86,11 +73,10 @@
         android:clickable="true"
         android:textColor="@color/white"
         android:textSize="@dimen/quizButtonsTextSize"
-        android:layout_above="@+id/quit"
-        android:layout_alignRight="@+id/quizHeader"
-        android:layout_alignEnd="@+id/quizHeader"
-        android:layout_marginBottom="@dimen/quizScreenButtonGap"
-        android:onClick="spellVoice" />
+        android:onClick="spellVoice"
+        android:layout_below="@+id/keyboardInput"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="@dimen/hearButtonWidth"
