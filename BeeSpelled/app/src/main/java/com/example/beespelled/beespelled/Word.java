@@ -37,7 +37,11 @@ public class Word implements Serializable {
         this.text = text;
     }
 
-    public void clearHistory(){ history = new ArrayList<Boolean>();}
+    public void clearHistory(){
+        history = new ArrayList<Boolean>();
+        attempts = 0;
+        successes = 0;
+    }
 
     public void addAttempt(Boolean success){
         incAttempts();
