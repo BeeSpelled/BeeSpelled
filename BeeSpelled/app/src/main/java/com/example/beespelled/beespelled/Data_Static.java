@@ -111,7 +111,22 @@ public class Data_Static {
             e.printStackTrace();
             return null;
         }
+    }
 
+    public static List<String> getNonEmptyListNames(Context c){
+        try {
+            List<String> lists = getListNames(c);
+            WordList listObj;
+            for (String list : lists) {
+                listObj = readWordList(c, list);
+                if (listObj.getWords().size() == 0) lists.remove(listObj.getName());
+            }
+            return lists;
+        }
+        catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static List<String> getWordsByList(Context c, String listName) throws IOException{
@@ -190,11 +205,21 @@ public class Data_Static {
 
     public static List<String> filterWordList(Context c, String list, int mastery) throws IOException{
         List<Word> words = new ArrayList<Word>();
+        List<String> result = new ArrayList<String>();
         WordList listObj = readWordList(c, list);
         for (String word : listObj.getWords()) words.add(readWord(c, word));
-
-
-        return null;
+        List<Boolean> history;
+        int tempMastery;
+        for (Word w : words) {
+            tempMastery = mastery;
+            history = w.getHistory();
+            if (history.size() > tempMastery) tempMastery = history.size();
+            history.subList(history.size() - mastery, history.size());
+            Log.d("Data_Static", "filterWordList");
+            Log.d("Data_Static", "\t" + history.toString());
+            if (history.contains(false)) result.add(w.toString());
+        }
+        return result;
     }
 
     public static void newWordAttempt(Context c, String word, boolean correct) throws IOException{
