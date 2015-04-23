@@ -1,0 +1,51 @@
+my list
+
+dragon 
+quickly
+greenhouse
+
+Welcome to BeeSpelled. This is an app that serves as a study aid for a spelling test or spelling bee. 
+
+First thing we need to do is enter a list of words to quiz on. 
+
+So we tap WORDS. The plus in the bottom right corner allows us to create a new list of words. 
+
+After hitting ok, we are sent to a screen where we can add words to the list. 
+
+After entrering a couple of words, we can quiz ourself on them!
+
+We tap the home icon to go back to the main screen. 
+
+To quiz ourself, we can tap the Play! button. 
+
+Here we can see 3 diffenrent options: Quiz, Study, and Options
+
+For now we'll click quiz.
+
+Quiz goes through every word in a list once, just like a spelling test. 
+
+You can tap "Hear Word" to have the word spoken to you. You can then spell the word with the keyboard or voice. Voice doesn't work on the emulator so we'll use the keyboard. 
+
+We'll misspell "Greenhouse" for the purpose of the video. 
+
+After the everyword is done, we'll get a dialog that tells us what words we missed. 
+
+We're then sent back to the play screen, where we can again, select a list to quiz. 
+
+This time we'll select our list and select options. 
+
+Here we can view the overall stats for a list.
+
+We can clear a list's spelling history, change the list we're using, and change the "Mastery Level"
+
+Mastery Level is a the number of times you have to consecutively spell a word for it to be "Mastered"
+
+Mastery level is used in the "Study" mode
+
+Now we'll hit "Study"
+
+Study is similar to quiz, however, it goes through all the words until each word is "Mastered" according to you set mastery level. And thats it!
+
+
+
+
