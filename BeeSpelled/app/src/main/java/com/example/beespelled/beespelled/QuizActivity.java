@@ -22,6 +22,11 @@ public class QuizActivity extends SpellActivity {
         setListName(b.getString("currList"));
         setLayout(R.layout.activity_quiz);
         setMenu(R.menu.menu_quiz);
+        try {
+            words = Data_Static.getWordsByList(getApplicationContext(), getListName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

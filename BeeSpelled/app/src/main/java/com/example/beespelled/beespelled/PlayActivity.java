@@ -75,6 +75,7 @@ public class PlayActivity extends ActionBarActivity {
         Intent intent = new Intent(this, StudyActivity.class);
         Bundle b = new Bundle();
         b.putString("currList", selected);
+        b.putInt("mastery", mastery);
         intent.putExtras(b);
         startActivity(intent);
     }
@@ -89,19 +90,19 @@ public class PlayActivity extends ActionBarActivity {
         masteryFlex = (SeekBar) convertView.findViewById(R.id.masteryFlexSeekBar);
 
         masteryFlex.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progressChanged = 0;
+            int progressChanged = 5;
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-                progressChanged = progress;
+                progressChanged = progress + 1;
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
+                // Don't Need. Auto-generated method stub
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
-                progressChanged++;
-                Toast.makeText(PlayActivity.this,"Mastery Changed to:"+progressChanged, Toast.LENGTH_SHORT).show();
+                mastery = progressChanged;
+                Toast.makeText(PlayActivity.this,"Mastery changed to:"+progressChanged, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -140,12 +141,15 @@ public class PlayActivity extends ActionBarActivity {
     }
 
     public  void clearHistoryButton(View view) {
-        Toast.makeText(view.getContext(), "options unimplemented", Toast.LENGTH_SHORT).show();
-
+        try {
+            Data_Static.clearWordHistory(getApplicationContext(), selected);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void selectList() throws IOException {
-        final List<String> lists = Data_Static.getListNames(getApplicationContext());
+        final List<String> lists = Data_Static.getNonEmptyListNames(getApplicationContext());
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.select_list_dialog_title);
         LayoutInflater inflater = this.getLayoutInflater();

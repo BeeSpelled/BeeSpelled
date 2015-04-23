@@ -49,11 +49,6 @@ public abstract class SpellActivity extends ActionBarActivity implements OnInitL
         super.onCreate(savedInstanceState);
         sayWord = new TextToSpeech(this, this);
         config(); // subclass specific configuration
-        try {
-            words = Data_Static.getWordsByList(getApplicationContext(), getListName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         Collections.shuffle(words);
         setCurrWord(words.get(0));
         setContentView(getLayout());

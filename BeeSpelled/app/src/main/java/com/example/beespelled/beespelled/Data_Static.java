@@ -116,12 +116,14 @@ public class Data_Static {
     public static List<String> getNonEmptyListNames(Context c){
         try {
             List<String> lists = getListNames(c);
+            List<String> nonEmptyLists = new ArrayList<String>();
             WordList listObj;
+
             for (String list : lists) {
                 listObj = readWordList(c, list);
-                if (listObj.getWords().size() == 0) lists.remove(listObj.getName());
+                if (listObj.getWords().size() != 0) nonEmptyLists.add(listObj.getName());
             }
-            return lists;
+            return nonEmptyLists;
         }
         catch (IOException e){
             e.printStackTrace();
@@ -213,11 +215,15 @@ public class Data_Static {
         for (Word w : words) {
             tempMastery = mastery;
             history = w.getHistory();
-            if (history.size() > tempMastery) tempMastery = history.size();
-            history.subList(history.size() - mastery, history.size());
-            Log.d("Data_Static", "filterWordList");
-            Log.d("Data_Static", "\t" + history.toString());
-            if (history.contains(false)) result.add(w.toString());
+            if (history.size() >= tempMastery) {
+                history = history.subList(history.size() - mastery, history.size());
+                Log.d("Data_Static", "filterWordList");
+                Log.d("Data_Static", "\t" + history.toString());
+                if (history.contains(false)) result.add(w.toString());
+            }
+            else {
+                result.add(w.toString());
+            }
         }
         return result;
     }
@@ -229,6 +235,12 @@ public class Data_Static {
     }
 
     public static void clearWordHistory(Context c, String word) throws IOException{
+        Word w = readWord(c, word);
+        w.clearHistory();
+        writeWord(c, w);
+    }
+
+    public static void clearListHistory(Context c, String word) throws IOException{
         Word w = readWord(c, word);
         w.clearHistory();
         writeWord(c, w);
