@@ -117,7 +117,6 @@ public abstract class SpellActivity extends ActionBarActivity implements OnInitL
                     attemptEdit = (EditText)this.findViewById(R.id.keyboardInput);
                     setAttempt(text.get(0));
                     attemptEdit.setText(text.get(0),null);
-                    processSpell();
                     for (String item : text) Log.d("SpellActivity", item);
                 }
 

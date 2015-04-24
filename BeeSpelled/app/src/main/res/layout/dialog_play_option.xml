@@ -74,11 +74,12 @@
         android:progressTint="@color/ripple_material_dark"
         android:thumbTint="@color/button_material_light"
         android:clickable="false"
-        android:layout_below="@+id/flexEasy"
         android:layout_alignLeft="@+id/selectList"
         android:layout_alignStart="@+id/selectList"
         android:layout_alignRight="@+id/selectList"
-        android:layout_alignEnd="@+id/selectList" />
+        android:layout_alignEnd="@+id/selectList"
+        android:layout_below="@+id/flexEasy"
+        android:layout_marginTop="@dimen/playScreenButtonGap" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -113,7 +114,8 @@
         android:layout_alignParentBottom="false"
         android:layout_alignParentLeft="false"
         android:layout_alignWithParentIfMissing="false"
-        android:layout_alignParentRight="false" />
+        android:layout_alignParentRight="false"
+        android:layout_marginTop="@dimen/playScreenButtonGap" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -127,7 +129,8 @@
         android:inputType="none"
         android:autoText="false"
         android:background="@color/background"
-        android:layout_below="@+id/flexText" />
+        android:layout_below="@+id/flexText"
+        android:layout_marginTop="@dimen/playScreenButtonGap" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
